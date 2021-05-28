@@ -51,7 +51,7 @@ def Post_create(request):
             post.create_date = timezone.now()
             # post.category = ""  # 카테고리 받아와서 넣기
             post.save()
-            return redirect('board:post_list')
+            return redirect('main:index')
     else:
         form = PostForm()
 

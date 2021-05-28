@@ -16,8 +16,6 @@ urlpatterns = [
     path('comment/modify/<int:comment_id>/', views.Comment_modify, name='comment_modify'),
     path('comment/delete/<int:comment_id>/', views.Comment_delete, name='comment_delete'),
     
-    path('ckeditor/', include('ckeditor_uploader.urls')),
-    
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
