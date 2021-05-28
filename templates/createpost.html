@@ -1,0 +1,15 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div>
+    <h1>글쓰기</h1>
+    <hr>
+    <br><br>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form.as_p }}
+        <input type="submit" class="" value="저장"/>
+    </form>
+</div>
+{% endblock content %}
