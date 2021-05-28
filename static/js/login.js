@@ -16,8 +16,4 @@ function login() {
         return;
     }
     $('#login_form').submit();
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> c0e3a27eacb1ee822e497b54ae4892f7a0c211f0
