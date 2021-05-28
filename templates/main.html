@@ -17,7 +17,7 @@
         <div class="navList">
             <a href="{% url 'main:index' %}" class="navList-itm">홈</a>
             <a href="" class="navList-itm">소개</a>
-            <a href="" class="navList-itm">게시판</a>
+            <a href="{% url 'board:post_list' %}" class="navList-itm">게시판</a>
             <a href="" class="navList-itm">소식</a>
             {% if user.username %}
                 <a href="{% url 'account:password_change' %}" class="navList-itm">{{user.realname}}님 </a>

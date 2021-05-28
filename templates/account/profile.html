@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+<div>
+
+    <div>
+        {{ user.username }}
+    <li>
+        <div>
+            <div>
+                <a href="#">회원정보 수정</a>
+            </div>
+        </div>
+        <div class="comment__list__itm comment--text">{{ user.profile.description }}</div>
+    </li>
+</div>
+{% endblock %}

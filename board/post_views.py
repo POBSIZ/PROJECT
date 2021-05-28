@@ -16,7 +16,7 @@ def Post_list(request):
             Q(title__icontains=kw) |  # 제목검색
             Q(content__icontains=kw) |  # 내용검색
             Q(author__username__icontains=kw) |  # 질문 글쓴이검색
-            Q(Comment__author__username__icontains=kw)  # 답변 글쓴이검색
+            Q(comment__author__username__icontains=kw)  # 답변 글쓴이검색
         ).distinct()
 
     # page = request.Get.get('page', '1')
@@ -25,7 +25,7 @@ def Post_list(request):
     page_obj = paginator.get_page(page)
 
     context = {'post_list': page_obj, 'page':page, 'kw':kw}
-    return render(request, '', context)
+    return render(request, 'board/post_list.html', context)
 
 
 def Post_detail(request, post_id):

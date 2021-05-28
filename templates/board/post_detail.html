@@ -1,0 +1,88 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+    {% comment %} <link rel="stylesheet" href="{% static '/css/board/boardDetail.css' %}"> {% endcomment %}
+    <div class="container__board">
+
+        <div class="content__wrapper">
+
+            <div class="content">
+
+                <div class="content__header">
+                    <div class="content__header info">
+                        <div class="content__header info--title">{{post.title}}</div>
+                        <div class="content__header comment__action">
+                            {% if request.user == post.author %}
+                            <a class="comment__action edit" href="{% url 'board:post_modify' post.id %}">EDIT</a>
+                            <a class="comment__action delete" href="{% url 'board:post_delete' post.id %}">DELETE</a>
+                            {% endif %}
+                        </div>
+                        <div class="content__header info__userInfo">
+                            <a class="content__header info__userInfo--name" href="{% url 'account:profile' post.author.username %}">{{ post.author.username }}</a>
+                            
+                            <div class="content__header info__userInfo--cartegory">{{ post.category }} |</div>
+                            <div class="content__header info__userInfo--time"> {{ post.create_date }}</div>
+                            {% if post.modify_date %}
+                            <div class="content__header info__userInfo--time">(수정일){{ post.modify_date}}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content__main">
+                    {{ post.content }}
+                </div>
+
+                <div class="content__footer">
+                    <div class="content__footer comment__wrapper">
+                        <div class="content__footer comment">
+
+                            <div class="comment--title">댓글</div>
+                            <hr class="content__footer divLine">
+
+                            <div class="comment__list__wrapper">
+                                <ul class="comment__list">
+                                    {% for comment in post.comment_set.all %}
+                                        <li class="comment__list__itm">
+                                            <div class="comment__list__itm comment__userInfo">
+                                                <a class="comment__userInfo--name" href="{% url 'account:progile' comment.author.username %}">{{ comment.author.username }}</a>
+                                                <div class="comment__userInfo--time">{{ comment.create_date }}</div>
+                                                {% if post.modify_date %}
+                                                <div class="content__header info__userInfo--time">(수정일){{ comment.modify_date}}</div>
+                                                {% endif %}
+                                                <div class="comment__action">
+                                                    <a class="comment__action edit" href="{% url 'board:comment_modify' comment.id %}">EDIT</a>
+                                                    <a class="comment__action delete" href="{% url 'board:comment_delete' comment.id %}">DELETE</a>
+                                                </div>
+                                            </div>
+                                            <div class="comment__list__itm comment--text">{{ comment.content }}</div>
+                                            <div class="comment__write__wrapper">
+                                                <form class="comment__write" method="POST" action="{% url 'board:comment_modify' comment.id %}">
+                                                    {% csrf_token %}
+                                                    <input class="comment__write--text" name="content" type="text" >
+                                                    <input class="comment__write--send" type="submit" value="SUBMIT">
+                                                </form>
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <hr class="content__footer divLine">
+
+                            <div class="comment__write__wrapper">
+                                <form class="comment__write" method="POST" action="{% url 'board:comment_create' post.id %}">
+                                    {% csrf_token %}
+                                    <input class="comment__write--text" name="content" type="text" >
+                                    <input class="comment__write--send" type="submit" value="SUBMIT">
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+{% endblock %}
