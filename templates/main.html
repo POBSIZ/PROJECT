@@ -15,18 +15,24 @@
         <div class="logo">PROJECT</div>
         <div class="navTab"></div>
         <div class="navList">
-            <a href="" class="navList-itm">홈</a>
+            <a href="{% url 'main:index' %}" class="navList-itm">홈</a>
             <a href="" class="navList-itm">소개</a>
             <a href="" class="navList-itm">게시판</a>
             <a href="" class="navList-itm">소식</a>
-            <a href="" class="navList-itm">로그인</a>
+            {% if user.username %}
+                <a href="{% url 'account:password_change' %}" class="navList-itm">{{user.realname}}님 </a>
+                <a href="{% url 'account:logout' %}" class="navList-itm">로그아웃</a>
+            {% else %}
+                <a href="{% url 'account:login' %}" class="navList-itm">로그인</a>
+            {% endif %}
+            
         </div>
     </nav>
     <div id="lottie"></div>
 </div>    
 <div class="wrapper_2">
     <div class="title">PROJECT</div>
-    <a href="{% url 'board:post_create' %}"> create </a>
+    <a href="{% url 'board:post_create' %}"> Post create (임시코드)</a>
 
 </div>
 
