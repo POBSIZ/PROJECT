@@ -31,21 +31,22 @@ scene.on("update", (e) => {
 
     // INFO
     if(e.scrollPos > 410){
-        document.querySelector('.info_tab').setAttribute('style', 'top: 0; opacity: 100%;')
+        document.querySelector('.info_tab').setAttribute('style', 'top: 0; opacity: 100%;');
     }
 
     // DO-LIST
     if(e.scrollPos > 850){
-        document.querySelectorAll('.doList-itm')[0].setAttribute('style', 'left: 0%; opacity: 100%;')
+        document.querySelectorAll('.doList-itm')[0].classList.add('scrollActive');
+        console.log('------------------------------')
     }
     if(e.scrollPos > 1250){
-        document.querySelectorAll('.doList-itm')[1].setAttribute('style', 'left: 0%; opacity: 100%;')
+        document.querySelectorAll('.doList-itm')[1].classList.add('scrollActive');
     }
     if(e.scrollPos > 1650){
-        document.querySelectorAll('.doList-itm')[2].setAttribute('style', 'left: 0%; opacity: 100%;')
+        document.querySelectorAll('.doList-itm')[2].classList.add('scrollActive');
     }
     if(e.scrollPos > 2050){
-        document.querySelectorAll('.doList-itm')[3].setAttribute('style', 'left: 0%; opacity: 100%;')
+        document.querySelectorAll('.doList-itm')[3].classList.add('scrollActive');
     }
 });
 

@@ -149,4 +149,7 @@ CKEDITOR_CONFIGS = {
     },
 }
 
+LOGIN_REDIRECT_URL = '/main/'
+LOGOUT_REDIRECT_URL = '/main/'
+
 AUTH_USER_MODEL = 'account.user'

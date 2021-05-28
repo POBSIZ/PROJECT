@@ -6,7 +6,7 @@ def error(request):
     return render(request, 'error.html')
 
 def user_register_page(request):
-    return render(request, '')
+    return render(request, 'account/user_register_page.html')
     
 def user_register_idcheck(request):
     if(request.method == 'POST'):
@@ -52,4 +52,4 @@ def user_register_result(request):
     return redirect(redirection_page)
     
 def user_register_completed(request):
-    return render(request, '')
+    return render(request, 'account/user_register_completed.html')

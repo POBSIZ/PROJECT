@@ -72,7 +72,9 @@ class User(AbstractBaseUser):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, models.DO_NOTHING)
-    # description = models.TextField(help_text="소개", blank=True)
+    description = models.TextField(help_text="소개", blank=True, null=True)
+    github = models.URLField(max_length = 200, blank=True, null=True)
+    blog = models.URLField(max_length = 200, blank=True, null=True)
     # nickname = models.CharField(help_text="닉네임", max_length=40, blank=True)
     # image = models.ImageField(help_text="대표 이미지",blank=True)
     

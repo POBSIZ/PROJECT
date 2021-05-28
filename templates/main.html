@@ -15,18 +15,24 @@
         <div class="logo">PROJECT</div>
         <div class="navTab"></div>
         <div class="navList">
-            <a href="" class="navList-itm">홈</a>
+            <a href="{% url 'main:index' %}" class="navList-itm">홈</a>
             <a href="" class="navList-itm">소개</a>
             <a href="" class="navList-itm">게시판</a>
             <a href="" class="navList-itm">소식</a>
-            <a href="" class="navList-itm">로그인</a>
+            {% if user.username %}
+                <a href="{% url 'account:password_change' %}" class="navList-itm">{{user.realname}}님 </a>
+                <a href="{% url 'account:logout' %}" class="navList-itm">로그아웃</a>
+            {% else %}
+                <a href="{% url 'account:login' %}" class="navList-itm">로그인</a>
+            {% endif %}
+            
         </div>
     </nav>
     <div id="lottie"></div>
 </div>    
 <div class="wrapper_2">
     <div class="title">PROJECT</div>
-    <a href="{% url 'board:post_create' %}"> create </a>
+    <a href="{% url 'board:post_create' %}"> Post create (임시코드)</a>
 
 </div>
 
@@ -52,7 +58,16 @@
         <h1 class="doList-title">활동</h1>
         <ul class="doList">
 
-            <li class="doList-itm" style="background-image: url('../img/test.jpg');">
+            <li class="doList-itm" style="background-image: url({% static 'img/jieun.png' %});">
+                <div class="doList-itm_wrapper">
+                    <h1>웹 전시회</h1>
+                    <p>
+                        소프트웨어 동아리 [PROJECT]와 문예동아리 지은의 첫번째 합작 걸음마 전
+                    </p> 
+                </div>
+            </li>
+
+            <li class="doList-itm" style="background-image: url({% static 'img/test.jpg' %});">
                 <div class="doList-itm_wrapper">
                     <h1>웹 전시회</h1>
                     <p>
@@ -60,6 +75,25 @@
                     </p> 
                 </div>
             </li>
+
+            <li class="doList-itm" style="background-image: url({% static 'img/test.jpg' %});">
+                <div class="doList-itm_wrapper">
+                    <h1>웹 전시회</h1>
+                    <p>
+                        소프트웨어 동아리 [PROJECT]와 문예동아리 지은의 첫번째 합작
+                    </p> 
+                </div>
+            </li>
+
+            <li class="doList-itm" style="background-image: url({% static 'img/test.jpg' %});">
+                <div class="doList-itm_wrapper">
+                    <h1>웹 전시회</h1>
+                    <p>
+                        소프트웨어 동아리 [PROJECT]와 문예동아리 지은의 첫번째 합작
+                    </p> 
+                </div>
+            </li>
+
 
         </ul>
     </div>
