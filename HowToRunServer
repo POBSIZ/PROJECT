@@ -8,7 +8,10 @@ LOCAL WAY = {
 
 RESTART = {
 
+    sudo nano /etc/systemd/system/mysite.service
     sudo nano /etc/nginx/sites-available/mysite
+    sudo systemctl enable mysite.service
+    sudo systemctl restart nginx
     sudo systemctl restart mysite.service
 
 }
