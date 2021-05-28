@@ -10,11 +10,13 @@
     box-sizing: border-box;
 }
 
-body, table, tbody, td, th, tr, p{
+body, table, tbody, td, th, tr, p, a, h1, ul, li{
     padding: 0;
     margin: 0;
     vertical-align: top;
     text-align: center;
+    text-decoration: none;
+    list-style: none;
 }
 
 body, tbody{
