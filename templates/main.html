@@ -30,11 +30,8 @@
     </nav>
     <div id="lottie"></div>
 </div>    
-<div class="wrapper_2">
-    <div class="title">PROJECT</div>
-    <a href="{% url 'board:post_create' %}"> Post create (임시코드)</a>
 
-</div>
+{% comment %} <a href="{% url 'board:post_create' %}"> Post create (임시코드)</a>  {% endcomment %}
 
 <div class="info-wrapper">
     <article class="info_tab">
@@ -58,7 +55,16 @@
         <h1 class="doList-title">활동</h1>
         <ul class="doList">
 
-            <li class="doList-itm" style="background-image: url('../img/test.jpg');">
+            <li class="doList-itm" style="background-image: url({% static 'img/jieun.png' %});">
+                <div class="doList-itm_wrapper">
+                    <h1>걸음마展</h1>
+                    <p>
+                        소프트웨어 동아리 [PROJECT]와 문예동아리 지은의 첫번째 합작
+                    </p> 
+                </div>
+            </li>
+
+            <li class="doList-itm" style="background-image: url({% static 'img/test.jpg' %});">
                 <div class="doList-itm_wrapper">
                     <h1>웹 전시회</h1>
                     <p>
@@ -66,6 +72,25 @@
                     </p> 
                 </div>
             </li>
+
+            <li class="doList-itm" style="background-image: url({% static 'img/test.jpg' %});">
+                <div class="doList-itm_wrapper">
+                    <h1>웹 전시회</h1>
+                    <p>
+                        소프트웨어 동아리 [PROJECT]와 문예동아리 지은의 첫번째 합작
+                    </p> 
+                </div>
+            </li>
+
+            <li class="doList-itm" style="background-image: url({% static 'img/test.jpg' %});">
+                <div class="doList-itm_wrapper">
+                    <h1>웹 전시회</h1>
+                    <p>
+                        소프트웨어 동아리 [PROJECT]와 문예동아리 지은의 첫번째 합작
+                    </p> 
+                </div>
+            </li>
+
 
         </ul>
     </div>

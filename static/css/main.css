@@ -146,6 +146,9 @@
     left: 500px;
     transition: all .5s;
 }
+.doList-itm.scrollActive{
+    left: 0%; opacity: 100%;
+}
 
 .doList-itm_wrapper{
     cursor: pointer;
@@ -155,7 +158,8 @@
     width: 100%;
     height: 300px;
     backdrop-filter: blur(10px);transition: all .4s;
-    color: #fff;
+    color: rgb(255, 255, 255);
+    text-shadow: 1px 1px 3px rgba(68, 68, 68, 0.5);
 }.doList-itm_wrapper:hover{
     opacity: 0%;
 }
@@ -169,7 +173,6 @@
     margin-bottom: 0;
     width: 80%;
 }
-
 
 /* FOOTER */
 .footer{
