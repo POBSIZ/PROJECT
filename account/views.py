@@ -55,7 +55,7 @@ def user_register_completed(request):
     return render(request, 'account/user_register_completed.html')
 
 def profile(request, username):
-    user = request.user
+    user = User.objects.get(username__exact=username)
     return render(request, 'account/profile.html', {'profile' : user.profile})
 
 def profile_change(request, username):
@@ -69,7 +69,7 @@ def profile_change(request, username):
         profile.blog = request.POST['blogURL']
         
         profile.save()
-        return redirect('account:profile')
+        return redirect('account:profile', username)
     else:
         context = {'profile' : profile}
 
