@@ -53,3 +53,25 @@ def user_register_result(request):
     
 def user_register_completed(request):
     return render(request, 'account/user_register_completed.html')
+
+def profile(request, username):
+    user = request.user
+    return render(request, 'account/profile.html', {'profile' : user.profile})
+
+def profile_change(request, username):
+    
+    profile = request.user.profile
+    
+    if request.method == "POST":
+        
+        profile.description = request.POST['description']
+        profile.github = request.POST['githubURL']
+        profile.blog = request.POST['blogURL']
+        
+        profile.save()
+        return redirect('account:profile')
+    else:
+        context = {'profile' : profile}
+
+    return render(request, 'account/profile_change.html', context)
+    

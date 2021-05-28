@@ -3,16 +3,15 @@
 {% block content %}
 
 <div>
-
     <div>
-        {{ user.username }}
+        {{ profile.user.username }}
     <li>
         <div>
             <div>
                 <a href="#">회원정보 수정</a>
             </div>
         </div>
-        <div class="comment__list__itm comment--text">{{ user.profile.description }}</div>
+        <div class="">{{ user.profile.description }}</div>
     </li>
 </div>
 {% endblock %}

@@ -2,7 +2,7 @@ from django.core import paginator
 from django.shortcuts import render
 
 from django.http import HttpResponse
-from .models import Post, Comment
+from .models import Post, Comment, Category
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required

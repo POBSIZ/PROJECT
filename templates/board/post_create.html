@@ -1,26 +1,31 @@
 {% extends 'index.html' %}
 {% load static %}
+
+{% block script %}
+<script src = "{% static 'js/board.js' %}"></script>
+{% endblock script %}
+
 {% block content %}
     {% comment %} <link rel="stylesheet" href="{% static '/css/board/writeForm.css' %}"> {% endcomment %}
     <div class="container__writeForm">
         <div class="write__wrapper">
-            <form method="POST" enctype="multipart/form-data">
+            <form method="POST" action="{% url 'board:post_create' %}" enctype="multipart/form-data">
             <span class="TITLE">WRITE</span>
-            {% comment %} <input type="text" name="email_domain" id="email_domain" value="">
-            <select id="select-category">
-                <option value="" selected="selected">카테고리없음</option>
-                <option value="algorithm">알고리즘</option>
-                <option value="backend">백엔드</option>
-                <option value="frontend">프론트엔드</option>
-                <option value="data">데이터</option>
-                <option value="study">데이터</option>
-                <option value="freedom">자유</option>
-            </select> {% endcomment %}
+            
                 {% csrf_token %}
+                <input type="text" name="title" id="title">
+                <input type="hidden" name="category" id="category">
+                {{ categories.count}}
+                <select id="cateselect" onchange="selectCategory()">
+                    {% for cate in category %}
+                        <option value="{{ cate.name }}">{{cate.name}}</option>
+                    {% endfor %}
+                </select>
+                
                 {{ form.media }}
                 {{ form.as_p }}
                 
-                <input class="write__submit" type="submit" value="저장">
+                <input class="" type="submit" value="저장">
             </form>
         </div>
     </div>

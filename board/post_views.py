@@ -34,13 +34,13 @@ def Post_detail(request, post_id):
     """
     post = get_object_or_404(Post, id=post_id)
     context = {"post": post}
-    return render(request, '', context)
+    return render(request, 'board/post_detail.html', context)
     
 
 @login_required(login_url='account:login')
 def Post_create(request):
     """ 
-    board 글 등록
+    글 등록
     """
     
     if request.method == 'POST':
@@ -49,14 +49,18 @@ def Post_create(request):
             post = form.save(commit=False)
             post.author = request.user
             post.create_date = timezone.now()
-            # post.category = ""  # 카테고리 받아와서 넣기
+            post.title = request.POST['title']
+            ct = Category.objects.get(name__exact=request.POST['category'])
+            post.category = ct # 카테고리 받아와서 넣기
             post.save()
-            return redirect('main:index')
+            return redirect('board:post_list')
     else:
         form = PostForm()
+        categories = Category.objects.all()
+        print(categories.count())
 
-    context = {'form' : form}
-    return render(request, 'createpost.html', context)
+    context = {'form' : form, 'category' : categories}
+    return render(request, 'board/post_create.html', context)
 
 
 @login_required(login_url='account:login')
@@ -81,7 +85,7 @@ def Post_modify(request, post_id):
     else:
         form = PostForm(instance=post)
     context = {'form': form}
-    return render(request, '', context)
+    return render(request, 'board/post_detail', context)
 
 
 @login_required(login_url='account:login')
@@ -91,7 +95,7 @@ def Post_delete(request, post_id):
     
     if request.user != post.author:
         messages.error(request, "삭제 권한이 없습니다")
-        return redirect('', post_id=post.id)
+        return redirect('board:post_detail', post_id=post.id)
     post.delete()
-    return redirect('board:post_delete')
+    return redirect('board:post_list')
 
