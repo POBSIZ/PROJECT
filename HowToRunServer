@@ -1,0 +1,15 @@
+PROD WAY = {
+    python manage.py runserver 0:8000 --settings=config.settings.prod
+}
+
+LOCAL WAY = {
+    python manage.py runserver --settings=config.settings.local
+}
+
+RESTART = {
+
+    sudo nano /etc/nginx/sites-available/mysite
+    sudo systemctl restart mysite.service
+
+}
+
