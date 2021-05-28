@@ -146,6 +146,9 @@
     left: 500px;
     transition: all .5s;
 }
+.doList-itm.scrollActive{
+    left: 0%; opacity: 100%;
+}
 
 .doList-itm_wrapper{
     cursor: pointer;
@@ -169,7 +172,6 @@
     margin-bottom: 0;
     width: 80%;
 }
-
 
 /* FOOTER */
 .footer{
