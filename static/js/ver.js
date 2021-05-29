@@ -22,7 +22,7 @@ let anim = lottie.loadAnimation(animateData);
 
 const navBar = document.querySelector('.navBar');
 scene.on("update", (e) => {
-    console.log(e.scrollPos)
+    // console.log(e.scrollPos)
     if(e.scrollPos > 0){
         navBar.classList.add('sticky');
     }else if(e.scrollPos == 0){
@@ -37,7 +37,6 @@ scene.on("update", (e) => {
     // DO-LIST
     if(e.scrollPos > 850){
         document.querySelectorAll('.doList-itm')[0].classList.add('scrollActive');
-        console.log('------------------------------')
     }
     if(e.scrollPos > 1250){
         document.querySelectorAll('.doList-itm')[1].classList.add('scrollActive');
