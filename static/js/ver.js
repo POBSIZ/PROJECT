@@ -35,17 +35,19 @@ scene.on("update", (e) => {
     }
 
     // DO-LIST
-    if(e.scrollPos > 850){
-        document.querySelectorAll('.doList-itm')[0].classList.add('scrollActive');
+    doList = document.querySelectorAll('.doList-itm')
+    doListM = 400
+    if(e.scrollPos > doList[0].offsetTop - doList[0].offsetHeight - doListM){
+        doList[0].classList.add('scrollActive');
     }
-    if(e.scrollPos > 1250){
-        document.querySelectorAll('.doList-itm')[1].classList.add('scrollActive');
+    if(e.scrollPos > doList[1].offsetTop - doList[1].offsetHeight - doListM){
+        doList[1].classList.add('scrollActive');
     }
-    if(e.scrollPos > 1650){
-        document.querySelectorAll('.doList-itm')[2].classList.add('scrollActive');
+    if(e.scrollPos > doList[2].offsetTop - doList[2].offsetHeight - doListM){
+        doList[2].classList.add('scrollActive');
     }
-    if(e.scrollPos > 2050){
-        document.querySelectorAll('.doList-itm')[3].classList.add('scrollActive');
+    if(e.scrollPos > doList[3].offsetTop - doList[3].offsetHeight - doListM){
+        doList[3].classList.add('scrollActive');
     }
 });
 
