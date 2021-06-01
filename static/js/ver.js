@@ -51,14 +51,15 @@ scene.on("update", (e) => {
     }
 });
 
+window.onload = ()=>{
+    // navBar.setAttribute('style', 'top: -90px;');
+};
 
 // 모든 미디어 및 돔이 로드가 완료된후 시작
 window.addEventListener('DOMContentLoaded', function()
 {
-    setTimeout(() => {
-        navBar.setAttribute('style', 'top: 0;');
-    }, 2000);
+    // setTimeout(() => {
+    //     navBar.setAttribute('style', 'top: 0;');
+    // }, 2000);
 
 });
-
-window.onload = ()=>{};

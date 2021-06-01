@@ -1,0 +1,17 @@
+<nav class="navBar">
+    <div class="logo">PROJECT</div>
+    <div class="navTab"></div>
+    <div class="navList">
+        <a href="{% url 'main:index' %}" class="navList-itm">홈</a>
+        <a href="{% url 'main:intro' %}" class="navList-itm">소개</a>
+        <a href="{% url 'board:post_list' %}" class="navList-itm">게시판</a>
+        <a href="{% url 'main:notice' %}" class="navList-itm">소식</a>
+        {% if user.username %}
+            <a href="{% url 'account:profile' user.username %}" class="navList-itm">{{user.realname}}님 </a>
+            <a href="{% url 'account:logout' %}" class="navList-itm">로그아웃</a>
+        {% else %}
+            <a href="{% url 'account:login' %}" class="navList-itm">로그인</a>
+        {% endif %}
+        
+    </div>
+</nav>
