@@ -8,10 +8,12 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base/nav.css' %}">
     
     <title>PROJECT</title>
 </head>
 <body>
+    {% include "./base/nav.html" %}
 
     {% block content %}
     {% endblock %}
