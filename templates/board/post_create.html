@@ -13,8 +13,8 @@
             <span class="TITLE">WRITE</span>
             
                 {% csrf_token %}
-                <input type="text" name="title" id="title">
-                <input type="hidden" name="category" id="category">
+                <input type="text" name="title" id="title" value="{{ title|default_if_none:'' }}">
+                <input type="hidden" name="category" id="category" value="{{ ct|default_if_none:'' }}">
                 {{ categories.count}}
                 <select id="cateselect" onchange="selectCategory()">
                     {% for cate in category %}

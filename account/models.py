@@ -18,6 +18,7 @@ class UserManager(BaseUserManager):
             is_active = 1,
         )
         profile = Profile()
+        profile.save()
         user.profile = profile
         user.set_password(password)
         user.save(using=self._db)

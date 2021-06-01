@@ -18,7 +18,7 @@
                             {% endif %}
                         </div>
                         <div class=" ">
-                            <a class=" " href="#">{{ post.author.username }}</a>
+                            <a class=" " href="{% url 'account:profile' user.username %}">{{ post.author.username }}</a>
                             
                             <div class=" ">{{ post.category }} |</div>
                             <div class=" "> {{ post.create_date }}</div>
