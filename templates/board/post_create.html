@@ -6,26 +6,35 @@
 {% endblock script %}
 
 {% block content %}
-    {% comment %} <link rel="stylesheet" href="{% static '/css/board/writeForm.css' %}"> {% endcomment %}
+    <link rel="stylesheet" href="{% static '/css/board/create.css' %}">
     <div class="container__writeForm">
         <div class="write__wrapper">
             <form method="POST" enctype="multipart/form-data" onsubmit="return post();">
-                <span class="TITLE">WRITE</span>
+                <h1 class="TITLE">WRITE</h1>
             
                 {% csrf_token %}
-                <input type="text" name="title" id="title" value="{{ post.title|default_if_none:'' }}">
-                <input type="hidden" name="category" id="category" value="{{ post.category.name|default_if_none:'-' }}">
-                <select id="cateselect" onchange="selectCategory()">
-                        <option selected value="{{ post.category.name|default_if_none:'-' }}">{{ post.category.name|default_if_none:'-' }}</option>
-                    {% for cate in category %}
-                        <option value="{{ cate.name }}">{{cate.name}}</option>
-                    {% endfor %}
-                </select>
+                <div class="opt-wrapper">
+                    <input 
+                        type="text" 
+                        name="title" 
+                        id="title" 
+                        value="{{ post.title|default_if_none:'' }}"
+                        placeholder="TITLE"
+                    >
+                    <input type="hidden" name="category" id="category" value="{{ post.category.name|default_if_none:'-' }}">
+                    <select id="cateselect" onchange="selectCategory()">
+                            <!-- <option selected value="{{ post.category.name|default_if_none:'-' }}">{{ post.category.name|default_if_none:'-' }}</option> -->
+                            <option selected value="0">선택</option>
+                        {% for cate in category %}
+                            <option value="{{ cate.name }}">{{cate.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
                 
                 {{ form.media }}
                 {{ form.as_p }}
                 
-                <input class="" type="submit" value="저장">
+                <input class="write-submit" type="submit" value="저장">
             </form>
         </div>
     </div>

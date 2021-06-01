@@ -1,0 +1,61 @@
+.container__writeForm{
+    padding: 5% 10%;
+}
+
+.TITLE{
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+/* OPTION */
+.opt-wrapper{
+    width: 100%;
+    border-bottom: 1px solid var(--BG);
+    margin-bottom: 30px;
+    font-size: 0;
+}
+
+.opt-wrapper > #title{
+    width: 80%;
+    line-height: 30px;
+    font-size: 18px;
+    border: none;
+    text-align: left;
+}
+
+.opt-wrapper > #cateselect{
+    width: 20%;
+    line-height: 30px;
+    height: 30px;
+    font-size: 15px;
+    border: none;
+    text-align: center;
+}
+.opt-wrapper > #cateselect > option{
+    text-align: center;
+}
+
+
+/* SUBMIT */
+.write-submit{
+    cursor: pointer;
+    float: right;
+    margin-top: 20px;
+    padding: 5px 30px 3px 30px;
+    font-size: 16px;
+    background-color: var(--BG);
+    color: #fff;
+}
+
+
+
+/* CKEDITOR */
+.django-ckeditor-widget{
+    width: 100% !important;
+}
+#cke_id_content{
+    width: 100% !important;
+}
+#cke_1_contents{
+    min-height: 500px !important;
+}

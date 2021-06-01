@@ -1,6 +1,5 @@
 window.onload =()=>{
     $('#category').val($('#cateselect').val());
-    console.log($('#category').val());
 };
 
 function selectCategory(){

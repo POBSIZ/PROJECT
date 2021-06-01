@@ -51,7 +51,47 @@
     margin-right: 10%;
 }
 .navList-itm{
+    display: inline-block;
     margin: 0px 10px;
     line-height: 80px;
     color: #000;
+}
+
+.navList-itm::after{
+    position: relative;
+    display: block;
+    content: "";
+    width: 0%;
+    height: 2px;
+    background-color: var(--BG);
+    top: -30px;
+    left: 50%;
+    transition: all .3s;
+}
+
+.navList-itm:hover:after{
+    width: 100%;
+    left: 0;
+}
+
+@media screen and (max-width: 900px) {
+    .navTab{
+        display: block;
+    }
+
+    .navBar{
+        height: 50px;
+    }
+
+    .navList{
+        display: none;
+    }
+
+    .logo{
+        float: left;
+        margin: 0;
+        margin-left: 5%;  
+        line-height: 50px;
+        font-size: 25px;
+    }
 }
