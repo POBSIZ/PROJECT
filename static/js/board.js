@@ -8,7 +8,7 @@ function selectCategory(){
 }
 
 const post =()=>{
-    if($('#category').val() == 0){
+    if($('#category').val() == '-'){
         alert('카테고리를 선택해주세요!')
         return false;
     }else{

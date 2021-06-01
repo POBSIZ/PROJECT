@@ -9,15 +9,14 @@
     {% comment %} <link rel="stylesheet" href="{% static '/css/board/writeForm.css' %}"> {% endcomment %}
     <div class="container__writeForm">
         <div class="write__wrapper">
-            <form method="POST" action="{% url 'board:post_create' %}" enctype="multipart/form-data" onsubmit="return post();">
+            <form method="POST" enctype="multipart/form-data" onsubmit="return post();">
                 <span class="TITLE">WRITE</span>
             
                 {% csrf_token %}
-                <input type="text" name="title" id="title" value="{{ title|default_if_none:'' }}">
-                <input type="hidden" name="category" id="category" value="{{ ct|default_if_none:'' }}">
-                {{ categories.count}}
+                <input type="text" name="title" id="title" value="{{ post.title|default_if_none:'' }}">
+                <input type="hidden" name="category" id="category" value="{{ post.category.name|default_if_none:'-' }}">
                 <select id="cateselect" onchange="selectCategory()">
-                        <option selected value="0">-</option>
+                        <option selected value="{{ post.category.name|default_if_none:'-' }}">{{ post.category.name|default_if_none:'-' }}</option>
                     {% for cate in category %}
                         <option value="{{ cate.name }}">{{cate.name}}</option>
                     {% endfor %}

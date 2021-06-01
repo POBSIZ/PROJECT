@@ -37,11 +37,8 @@ def user_register_result(request):
         
     try:
         if username and User.objects.filter(username__exact=username).count() == 0:
-            profile = Profile()
             user = User.objects.create_user(\
                 username, password, realname, email, phone, date_of_birth)
-            profile.user = user
-            profile.save()
             
             redirection_page = "account:registercompleted"
         else:

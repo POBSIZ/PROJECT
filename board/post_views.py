@@ -61,34 +61,32 @@ def Post_create(request):
     context = {'form' : form, 'category' : categories}
     return render(request, 'board/post_create.html', context)
 
-
-@login_required(login_url='account:login')
+@login_required(login_url='accounts:login')
 def Post_modify(request, post_id):
     """
     게시판 글 수정
     """
     post = get_object_or_404(Post, pk=post_id)
     
-    if request.user != Post.author:
+    if request.user != post.author:
         messages.error(request, "수정 권한이 없습니다")
         return redirect('board:post_detail', post_id=post.id)
-        
+    
     if request.method == "POST":
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
             post = form.save(commit=False)
-            post.author = request.user
             post.modify_date = timezone.now()
+            post.title = request.POST['title']
+            ct = Category.objects.get(name__exact=request.POST['category'])
+            post.category = ct
             post.save()
-            
             return redirect('board:post_detail', post_id=post.id)
     else:
         form = PostForm(instance=post)
-        title = post.title
-        ct = post.category.name
-    
-    print("tlqkf")
-    context = {'form': form, 'title':title, 'ct':ct }
+        categories = Category.objects.all()
+
+    context = {'form' : form, 'post':post, 'category' : categories}
     return render(request, 'board/post_create.html', context)
 
 
