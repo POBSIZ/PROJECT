@@ -5,16 +5,15 @@ from ckeditor_uploader.widgets import CKEditorUploadingWidget
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['title', 'content']
+        fields = ['content']
         labels = {
-            'title': '',
             'content': '',
         }
         widgets = {
-            'title': forms.TextInput(
-                attrs={'class': '', 'style': 'width: 100%', 'placeholder': '제목을 입력하세요.'}
+            'content': forms.CharField(
+                # attrs={'class': '', 'style': 'width: 100%'},
+                widget=CKEditorUploadingWidget()
             ),
-            'content': forms.CharField(widget=CKEditorUploadingWidget()),
         }
 
 class CommentForm(forms.ModelForm):

@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+<div>
+    <div>
+        {{ profile.user.username }}
+    <li>
+        <div>
+            <div>
+                {% if profile.user.username == user.username %}
+                <a href="{% url 'account:profile_change' profile.user.username %}">회원정보 수정</a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="">{{ profile.description }}</div>
+        <div class=""><a href="{{ profile.github }}">{{ profile.github }}</a></div>
+        <div class=""><a href="{{ profile.blog }}">{{ profile.blog }}</a></div>
+    </li>
+</div>
+{% endblock %}

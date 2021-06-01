@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block script %}
+<script src = "{% static 'js/board.js' %}"></script>
+{% endblock script %}
+
+{% block content %}
+    {% comment %} <link rel="stylesheet" href="{% static '/css/board/writeForm.css' %}"> {% endcomment %}
+    <div class="container__writeForm">
+        <div class="write__wrapper">
+            <form method="POST" action="{% url 'board:post_create' %}" enctype="multipart/form-data">
+            <span class="TITLE">WRITE</span>
+            
+                {% csrf_token %}
+                <input type="text" name="title" id="title">
+                <input type="hidden" name="category" id="category">
+                {{ categories.count}}
+                <select id="cateselect" onchange="selectCategory()">
+                    {% for cate in category %}
+                        <option value="{{ cate.name }}">{{cate.name}}</option>
+                    {% endfor %}
+                </select>
+                
+                {{ form.media }}
+                {{ form.as_p }}
+                
+                <input class="" type="submit" value="저장">
+            </form>
+        </div>
+    </div>
+{% endblock %}

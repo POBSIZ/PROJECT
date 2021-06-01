@@ -1,0 +1,88 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+    {% comment %} <link rel="stylesheet" href="{% static '/css/board/boardDetail.css' %}"> {% endcomment %}
+    <div class="">
+
+        <div class="">
+
+            <div class="">
+
+                <div class="">
+                    <div class=" ">
+                        <div class=" ">{{post.title}}</div>
+                        <div class=" ">
+                            {% if request.user == post.author %}
+                            <a class=" " href="{% url 'board:post_modify' post.id %}">EDIT</a>
+                            <a class=" " href="{% url 'board:post_delete' post.id %}">DELETE</a>
+                            {% endif %}
+                        </div>
+                        <div class=" ">
+                            <a class=" " href="#">{{ post.author.username }}</a>
+                            
+                            <div class=" ">{{ post.category }} |</div>
+                            <div class=" "> {{ post.create_date }}</div>
+                            {% if post.modify_date %}
+                            <div class=" ">(수정일){{ post.modify_date}}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="">
+                    {{ post.content | safe }}
+                </div>
+
+                <div class="">
+                    <div class=" ">
+                        <div class=" ">
+
+                            <div class="">댓글</div>
+                            <hr class=" ">
+
+                            <div class="">
+                                <ul class="">
+                                    {% for comment in post.comment_set.all %}
+                                        <li class="">
+                                            <div class=" ">
+                                                <a class="" href="#">{{ comment.author.username }}</a>
+                                                <div class="">{{ comment.create_date }}</div>
+                                                {% if post.modify_date %}
+                                                <div class="">(수정일){{ comment.modify_date}}</div>
+                                                {% endif %}
+                                                <div class="">
+                                                    <a class=" " href="{% url 'board:comment_modify' comment.id %}">EDIT</a>
+                                                    <a class=" " href="{% url 'board:comment_delete' comment.id %}">DELETE</a>
+                                                </div>
+                                            </div>
+                                            <div class="">{{ comment.content }}</div>
+                                            <div class="">
+                                                <form class="" method="POST" action="{% url 'board:comment_modify' comment.id %}">
+                                                    {% csrf_token %}
+                                                    <input class="" name="content" type="text" >
+                                                    <input class="" type="submit" value="SUBMIT">
+                                                </form>
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <hr class="">
+
+                            <div class="">
+                                <form class="" method="POST" action="{% url 'board:comment_create' post.id %}">
+                                    {% csrf_token %}
+                                    <input class="" name="content" type="text" >
+                                    <input class="" type="submit" value="SUBMIT">
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+{% endblock %}

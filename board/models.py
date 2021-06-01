@@ -1,20 +1,19 @@
 from django.db import models
 # from django.contrib.auth.models import User
-from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.conf import settings
 
 User = settings.AUTH_USER_MODEL
 
 class Category(models.Model):
-    category = models.CharField(max_length=50, blank=True, null=True)
+    name = models.CharField(max_length=50)
     
     def __str__(self):
-        return self.category
+        return self.name
 
 class Post(models.Model):
     title = models.CharField(max_length=200)
-    content = RichTextUploadingField(config_name="default", null=True, blank=True)
+    content = RichTextUploadingField(null=True, blank=True)
     create_date = models.DateTimeField()
     modify_date = models.DateTimeField(null=True, blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
