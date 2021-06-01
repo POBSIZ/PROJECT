@@ -18,7 +18,7 @@
                             {% endif %}
                         </div>
                         <div class=" ">
-                            <a class=" " href="#">{{ post.author.username }}</a>
+                            <a class=" " href="{% url 'account:profile' post.author.username %}">{{ post.author.username }}</a>
                             
                             <div class=" ">{{ post.category }} |</div>
                             <div class=" "> {{ post.create_date }}</div>
@@ -45,13 +45,13 @@
                                     {% for comment in post.comment_set.all %}
                                         <li class="">
                                             <div class=" ">
-                                                <a class="" href="#">{{ comment.author.username }}</a>
+                                                <a class="" href="{% url 'account:profile' comment.author.username %}">{{ comment.author.username }}</a>
                                                 <div class="">{{ comment.create_date }}</div>
                                                 {% if post.modify_date %}
                                                 <div class="">(수정일){{ comment.modify_date}}</div>
                                                 {% endif %}
                                                 <div class="">
-                                                    <a class=" " href="{% url 'board:comment_modify' comment.id %}">EDIT</a>
+                                                    <a class=" " href="#">EDIT</a>
                                                     <a class=" " href="{% url 'board:comment_delete' comment.id %}">DELETE</a>
                                                 </div>
                                             </div>
