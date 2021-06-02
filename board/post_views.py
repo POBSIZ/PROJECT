@@ -78,6 +78,7 @@ def Post_modify(request, post_id):
             post = form.save(commit=False)
             post.modify_date = timezone.now()
             post.title = request.POST['title']
+            print("what ",request.POST['category'])
             ct = Category.objects.get(name__exact=request.POST['category'])
             post.category = ct
             post.save()
@@ -86,7 +87,7 @@ def Post_modify(request, post_id):
         form = PostForm(instance=post)
         categories = Category.objects.all()
 
-    context = {'form' : form, 'post':post, 'category' : categories}
+    context = {'form' : form, 'post' : post, 'category' : categories}
     return render(request, 'board/post_create.html', context)
 
 
