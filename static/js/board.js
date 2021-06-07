@@ -1,7 +1,3 @@
-window.onload =()=>{
-    $('#category').val($('#cateselect').val());
-};
-
 function selectCategory(){
     $('#category').val($('#cateselect').val());
 }
