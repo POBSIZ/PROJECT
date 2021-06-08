@@ -15,7 +15,7 @@
     box-sizing: border-box;
     outline: none;
     border-collapse: collapse;
-    vertical-align: top;
+    /* vertical-align: top; */
     border-radius: 0;
     /* color: var(--BG); */
 }
