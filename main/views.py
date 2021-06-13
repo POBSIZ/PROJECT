@@ -10,5 +10,7 @@ def notice(request):
     return render(request, 'notice.html')
 
 
-def calender(request):
-    return render(request, 'calender/calender.html')
+
+# CALENDAR
+def calendar(request):
+    return render(request, 'calendar/calendar.html')

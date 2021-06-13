@@ -3,7 +3,7 @@
     <div class="navTab"></div>
     <div class="navList">
         <a href="{% url 'main:index' %}" class="navList-itm">홈</a>
-        <a href="{% url 'main:calender' %}" class="navList-itm">예약</a>
+        <a href="{% url 'main:calendar' %}" class="navList-itm">예약</a>
         <a href="{% url 'board:post_list' %}" class="navList-itm">게시판</a>
         <a href="{% url 'main:notice' %}" class="navList-itm">소식</a>
         {% if user.username %}
