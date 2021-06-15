@@ -1,3 +1,6 @@
+body{
+    padding-top: 80px;
+}
 
 .test-image{
     background-image: url("../img/test.jpg");
@@ -37,7 +40,7 @@
     position: relative;
     width: 100%;
     height: 300px;
-    margin-top: 200px;
+    /* margin-top: 200px; */
     top: 300px;
     opacity: 0%;
     transition: all 1s;
@@ -68,57 +71,42 @@
 
 .doList-title{
     font-size: 50px;
-    margin-bottom: 50pxs;
+    margin-bottom: 50px;
 }
 
 .doList{
+    box-sizing: border-box;
     width: 100%;
+    overflow: hidden;
     margin: auto;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    padding: 2%;
+    /* display: flex; */
+    /* justify-content: center; */
 }
 
 .doList-itm{
     position: relative;
-    width: 80%;
-    height: 300px;
+    /* width: 409px; */
     margin: 20px;
-    /* background-image: url('../img/test.jpg'); */
-    background-position: center !important;
-    background-size: cover !important;
-    background-repeat: no-repeat !important;
-    opacity: 0%;
-    left: 500px;
+    padding: 10px;
+    box-shadow: 2px 2px 8px rgba(83, 83, 83, 0.3);
+    opacity: 20%;
     transition: all .5s;
 }
-.doList-itm.scrollActive{
-    left: 0%; opacity: 100%;
+.doList-itm.centOn{
+    opacity: 100%;
 }
 
-.doList-itm_wrapper{
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    flex-flow: column;
+
+.doList-itm_img{
     width: 100%;
-    height: 300px;
-    backdrop-filter: blur(10px);transition: all .4s;
-    color: rgb(255, 255, 255);
-    text-shadow: 1px 1px 3px rgba(68, 68, 68, 0.5);
-}.doList-itm_wrapper:hover{
-    opacity: 0%;
+    padding-bottom: 100%;
+    background-position: center !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
 }
-.doList-itm_wrapper > h1{
-    font-size: 30px;
-}
-.doList-itm_wrapper > p{
-    margin: auto;
-    font-weight: 100;
-    margin-top: 0;
-    margin-bottom: 0;
-    width: 80%;
-}
+
+
 
 /* FOOTER */
 .footer{
