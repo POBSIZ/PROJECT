@@ -8,3 +8,9 @@ def intro(request):
     
 def notice(request):
     return render(request, 'notice.html')
+
+
+
+# CALENDAR
+def calendar(request):
+    return render(request, 'calendar/calendar.html')

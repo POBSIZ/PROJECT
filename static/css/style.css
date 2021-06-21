@@ -15,7 +15,7 @@
     box-sizing: border-box;
     outline: none;
     border-collapse: collapse;
-    vertical-align: top;
+    /* vertical-align: top; */
     border-radius: 0;
     /* color: var(--BG); */
 }
@@ -27,6 +27,7 @@ body, table, tbody, td, th, tr, p, a, h1, ul, li, input, button{
     text-align: center;
     text-decoration: none;
     list-style: none;
+    border: none;
 }
 
 body, tbody{
@@ -35,4 +36,9 @@ body, tbody{
 
 button, input[type=submit], input[type=button]{
     border: none;
+}
+
+.container{
+    position: relative;
+    z-index: 0;
 }
