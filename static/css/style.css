@@ -42,3 +42,7 @@ button, input[type=submit], input[type=button]{
     position: relative;
     z-index: 0;
 }
+
+body{
+    padding-top: 80px !important;
+}
