@@ -17,10 +17,7 @@ class UserManager(BaseUserManager):
             is_staff = 0,
             is_active = 1,
         )
-        profile = Profile()
-        profile.user = user
-        profile.save()
-        user.profile = profile
+        
         user.set_password(password)
         user.save(using=self._db)
         
@@ -38,6 +35,11 @@ class UserManager(BaseUserManager):
         )
         user.is_superuser = 1
         user.is_staff = 1
+        
+        profile = Profile()
+        profile.user = user
+        profile.save()
+        user.profile = profile
         
         user.save(using=self._db)
         return user
