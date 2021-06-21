@@ -29,7 +29,7 @@ def Comment_modify(request, comment_id):
     
     if request.user != comment.author:
         messages.error(request, "수정 권한이 없습니다")
-        return redirect('boards:Post_detail', post_id=comment.post.id)
+        return redirect('board:post_detail', post_id=comment.post.id)
     
     if request.method == "POST":
         form = CommentForm(request.POST, instance=comment)
