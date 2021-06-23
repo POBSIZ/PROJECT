@@ -21,7 +21,7 @@
                         value="{{ post.title|default_if_none:'' }}"
                         placeholder="TITLE"
                     >
-                    <input type="hidden" name="category" id="category" value="{{ post.category.name|default_if_none:'-' }}">
+                    <input type="hidden" name="category" id="category" value="{% if post %}{{ post.category.name}}{% else %}-{% endif %}">
                     <select id="cateselect" onchange="selectCategory()">
                         <option selected value="{{ post.category.name|default_if_none:'-' }}">
                             {% if post %}

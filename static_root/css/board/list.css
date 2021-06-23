@@ -1,0 +1,156 @@
+.container__board{
+    padding: 5% 10%;
+}
+
+.board-inwrapper{}
+
+.TITLE{
+    margin-bottom: 20px;
+}
+
+/* INPUT GROUP */
+.input-group{
+    border-bottom: 1px solid var(--BG);
+    width: 30%;
+    vertical-align: top ;
+    font-size: 0;
+}
+
+.kw{
+    display: inline-block;
+    border: none;
+    height: 40px;   
+    width: 80%;
+    font-size: 20px;
+}
+
+.input-group-append{
+    display: inline-block;
+    width: 20%;
+}
+
+.btn{
+    cursor: pointer;
+    height: 40px;
+    width: 100%;
+    border: none;
+    background-color: var(--BG);
+    color: #fff;
+    font-size: 16px;
+}
+
+
+/* BOARD LIST */
+.boardList{}
+
+.boardList > div > span{
+    line-height: 300px;
+}
+
+
+/* WRITE */
+.btn__wrapper{
+    height: 35px;
+    margin-bottom: 20px;
+}
+
+.writeBtn{
+    position: relative;
+    float: right;
+    z-index: 10;
+    line-height: 30px;
+    font-size: 16px;
+    padding: 5px 20px 0px 20px;
+    transition: all .5s;
+    background-image: linear-gradient(0deg, var(--BG), var(--BG));
+    background-size: 0;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.writeBtn:hover{
+    color: #fff;
+    background-size: 100%;
+}
+.writeBtn::after{
+    position: relative;
+    display: block;
+    content: "";
+    width: 100%;
+    height: 2px;
+    background-color: var(--BG);
+    transition: all .5s;
+}
+
+
+/* LIST */
+.boardList__wrapper{
+    margin-top: 30px;
+    min-height: 300px;
+}
+
+.boardList > .boardList__itm, .boardList > a > .boardList__itm {
+    border-bottom: 1px solid rgb(51, 51, 51, 20%);
+}
+
+.boardList__itm{
+    font-size: 0;
+    padding: 15px 0px;
+}
+.boardList__itm.category{
+    width: 10%;
+}
+.boardList__itm.userInfo{
+    width: 40%;
+}
+.boardList__itm.textInfo{
+    width: 50%;
+}
+
+.boardList__itm > div{
+    display: inline-block;
+    font-size: 16px;
+}
+
+.userInfo--name{
+    line-height: 24px;
+    font-size: 15px !important;
+}
+
+/* list Top */
+.boardList > li:first-child.boardList__itm:first-child {
+    border-top: 2px solid var(--BG);
+    padding: 15px 0px 10px 0px;
+}
+.boardList__itm:first-child div{
+    padding: 0;
+}
+
+
+
+/* PAGINATION */
+.pagination{
+    display: flex;
+    justify-content: center;
+}
+
+.page-item{
+    margin: 0px 10px;
+    line-height: 30px;
+    font-size: 18px;
+    padding: 5px;
+}
+.page-link{
+    color: var(--BG);
+}
+
+.page-item.active{width: 20px;}
+.page-item.active > a{
+    color: var(--light);
+}
+.page-item.active::after{
+    display: block;
+    content: "";
+    width: 100%;
+    height: 2px;
+    background-color: var(--light);
+}
