@@ -1,6 +1,10 @@
+const nav = document.querySelector('.navBar');
 const resvTab = document.querySelector('.resv-wrapper');
 const exitBtn = document.querySelector('.resv-close');
-exitBtn.addEventListener('click', ()=>{resvTab.classList.remove('open');});
+exitBtn.addEventListener('click', ()=>{
+    resvTab.classList.remove('open');
+    nav.setAttribute('style', 'z-index: 10;');
+});
 
 
 // 날짜별로 이벤트 등록용 함수 및 변수
@@ -22,10 +26,12 @@ const dateFunc = ()=>{
                 i.classList.add('selected');
                 selDate.push([year.innerHTML, month.innerHTML, i.innerHTML]);
                 resvTab.classList.add('open');
+                nav.setAttribute('style', 'z-index: 0;');
             }else{
                 i.classList.add('selected');
                 selDate.push([year.innerHTML, month.innerHTML, i.innerHTML]);
                 resvTab.classList.add('open');
+                nav.setAttribute('style', 'z-index: 0;');
             }
         });
     });

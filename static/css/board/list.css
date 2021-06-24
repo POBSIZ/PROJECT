@@ -1,5 +1,5 @@
 .container__board{
-    padding: 5% 10%;
+    padding: 5% 0;
 }
 
 .board-inwrapper{}
@@ -61,11 +61,12 @@
     line-height: 30px;
     font-size: 16px;
     padding: 5px 20px 0px 20px;
-    transition: all .5s;
     background-image: linear-gradient(0deg, var(--BG), var(--BG));
     background-size: 0;
     background-position: center;
     background-repeat: no-repeat;
+    color: var(--BG);
+    transition: all .5s;
 }
 .writeBtn:hover{
     color: #fff;
@@ -95,6 +96,7 @@
 .boardList__itm{
     font-size: 0;
     padding: 15px 0px;
+    color: var(--BG);
 }
 .boardList__itm.category{
     width: 10%;

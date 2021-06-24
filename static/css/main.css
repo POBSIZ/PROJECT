@@ -34,6 +34,7 @@ body{
 .info-wrapper{
     overflow: hidden;
     width: 100%;
+    text-align: center;
 }
 
 .info_tab{
@@ -67,6 +68,7 @@ body{
 .doList-inner{
     width: 100%;
     overflow: hidden;
+    text-align: center;
 }
 
 .doList-title{
@@ -113,4 +115,10 @@ body{
     width: 100%;
     height: 300px;
     background-color: rgb(243, 243, 243);
+}
+
+@media screen and (max-width: 1000px) {
+    .doList-itm{
+        opacity: 100%;
+    }
 }
