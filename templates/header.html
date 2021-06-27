@@ -1,9 +1,9 @@
 <nav class="navBar">
-    <div class="logo"><a style="color: #000; text-decoration: none;"href="{% url 'main:index' %}">PROJECT</a></div>
+    <div class="logo"><a style="color: #000; text-decoration: none;"href="{% url 'mainapp:main' %}">PROJECT</a></div>
     <div class="navTab"></div>
 
     <div class="mobile-navList">
-        <a href="{% url 'main:index' %}" class="navList-itm">홈</a>
+        <a href="{% url 'mainapp:main' %}" class="navList-itm">홈</a>
         <a href="{% url 'main:calendar' %}" class="navList-itm">예약</a>
         <a href="{% url 'board:post_list' %}" class="navList-itm">게시판</a>
         <a href="{% url 'main:notice' %}" class="navList-itm">소식</a>
@@ -16,7 +16,7 @@
     </div>
 
     <div class="navList">
-        <a href="{% url 'main:index' %}" class="navList-itm">홈</a>
+        <a href="{% url 'mainapp:main' %}" class="navList-itm">홈</a>
         <a href="{% url 'main:calendar' %}" class="navList-itm">예약</a>
         <a href="{% url 'board:post_list' %}" class="navList-itm">게시판</a>
         <a href="{% url 'main:notice' %}" class="navList-itm">소식</a>

@@ -1,21 +1,20 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.utils import timezone
-from board.models import Post, Comment
 
 class UserManager(BaseUserManager):
     # Method Overriding
     def create_user(self, username, password, realname, email, phone, date_of_birth):
         user = self.model(
-            username = username,
-            realname = realname,
-            email = self.normalize_email(email),
-            phone = phone,
-            date_of_birth = date_of_birth,
-            date_joined = timezone.now(),
-            is_superuser = 0,
-            is_staff = 0,
-            is_active = 1,
+            username=username,
+            realname=realname,
+            email=self.normalize_email(email),
+            phone=phone,
+            date_of_birth=date_of_birth,
+            date_joined=timezone.now(),
+            is_superuser=0,
+            is_staff=0,
+            is_active=1,
         )
         
         user.set_password(password)
@@ -26,12 +25,12 @@ class UserManager(BaseUserManager):
     # Method Overriding
     def create_superuser(self, username, realname, email, phone, date_of_birth, password):
         user = self.create_user(
-            username = username,
-            password = password,
-            realname = realname,
-            email = email,
-            phone = phone,
-            date_of_birth = date_of_birth,
+            username=username,
+            password=password,
+            realname=realname,
+            email=email,
+            phone=phone,
+            date_of_birth=date_of_birth,
         )
         user.is_superuser = 1
         user.is_staff = 1
@@ -79,9 +78,9 @@ class User(AbstractBaseUser):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, models.DO_NOTHING)
-    description = models.TextField(help_text="소개", blank=True, null=True)
-    github = models.URLField(max_length = 200, blank=True, null=True)
-    blog = models.URLField(max_length = 200, blank=True, null=True)
+    description = models.TextField(help_text="소개", null=True)
+    github = models.URLField(max_length=30, null=True)
+    blog = models.URLField(max_length=30, null=True)
     # nickname = models.CharField(help_text="닉네임", max_length=40, blank=True)
     # image = models.ImageField(help_text="대표 이미지",blank=True)
     
