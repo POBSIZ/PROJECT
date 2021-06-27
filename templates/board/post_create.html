@@ -7,17 +7,17 @@
 
 {% block content %}
     <link rel="stylesheet" href="{% static '/css/board/create.css' %}">
-    <div class="container__writeForm">
-        <div class="write__wrapper">
+    <div>
+        <div>
             <form method="POST" enctype="multipart/form-data" onsubmit="return post();">
                 <h1 class="TITLE">WRITE</h1>
             
                 {% csrf_token %}
                 <div class="opt-wrapper">
-                    <input 
-                        type="text" 
-                        name="title" 
-                        id="title" 
+                    <input
+                        type="text"
+                        name="title"
+                        id="title"
                         value="{{ post.title|default_if_none:'' }}"
                         placeholder="TITLE"
                     >
@@ -35,7 +35,7 @@
                         {% endfor %}
                     </select>
                 </div>
-                
+
                 {{ form.media }}
                 {{ form.as_p }}
                 

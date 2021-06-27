@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'board',
     'main',
     'account',
+    'froala_editor',
     'ckeditor',
     'ckeditor_uploader',
     'django.contrib.admin',
@@ -190,6 +191,19 @@ CKEDITOR_CONFIGS = {
         ]),
     }
 }
+
+FROALA_EDITOR_PLUGINS = ('align', 'char_counter', 'code_beautifier' ,'code_view', 'colors', 'draggable', 'emoticons',
+        'entities', 'file', 'font_family', 'font_size', 'fullscreen', 'image_manager', 'image', 'inline_style',
+        'line_breaker', 'link', 'lists', 'paragraph_format', 'paragraph_style', 'quick_insert', 'quote', 'save', 'table',
+        'url', 'video')
+
+FRAOLA_EDITOR_THIRD_PARTY = ('image_aviary', 'spell_checker')
+# FROALA_UPLOAD_PATH = os.path.join(BASE_DIR, 'uploads/froala_editor/images')
+# FROALA_EDITOR_OPTIONS = {
+#   'key': '<our key goes here>',
+#   # other options
+#   # ...
+# }
 
 LOGIN_REDIRECT_URL = '/main/'
 LOGOUT_REDIRECT_URL = '/main/'

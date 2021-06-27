@@ -1,6 +1,7 @@
 from django.db import models
 # from django.contrib.auth.models import User
 from ckeditor_uploader.fields import RichTextUploadingField
+from froala_editor.fields import FroalaField
 from django.conf import settings
 
 User = settings.AUTH_USER_MODEL
@@ -13,7 +14,10 @@ class Category(models.Model):
 
 class Post(models.Model):
     title = models.CharField(max_length=200)
-    content = RichTextUploadingField(null=True, blank=True)
+    # content = RichTextUploadingField(null=True, blank=True)
+    content = FroalaField(plugins=('font_size', 'font_family'), null=True, blank=True, options={
+    'toolbarInline': True,
+  })
     create_date = models.DateTimeField()
     modify_date = models.DateTimeField(null=True, blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
