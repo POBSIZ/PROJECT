@@ -3,6 +3,8 @@
     width: 100%;
     height: 600px;
     overflow: hidden;
+    transition: all .5s;
+    padding: 10px;
 }
 
 .mainBanner-inner{
@@ -10,6 +12,7 @@
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     background-color: #00000075;
+    padding: 10px;
 }
 
 /* TEXT */
@@ -62,10 +65,31 @@
 .mainBanner_img-itm{
     display: inline-block;
     width: 20%;
-    padding-bottom: 600px;
+    padding-bottom: 560px;
 
     /* background-color: #000; */
     background-size: contain !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
+}
+
+@media screen and (max-width: 1100px) {
+    .mainBanner{
+        height: auto;
+    }
+    
+    .mainBanner-inner {
+        height: auto;
+    }
+
+    .mainBanner_text{
+        width: 100%;
+    }
+
+    .mainBanner_img{
+        width: 100%;
+    }
+    .mainBanner_img-itm{
+        padding-bottom: 300px;
+    }
 }

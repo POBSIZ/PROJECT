@@ -53,19 +53,22 @@ const changeSlide = ()=>{
         currNum = 0;            
         textSlide.setAttribute('style', `left: -${currNum*100}%`);
         imgSlide.setAttribute('style', `left: -${currNum*100}%`);
-
+        imgSlideItm[currNum].classList.add('slide-active')
+        imgSlideItm[setNum-1].classList.remove('slide-active')
+        bgSrc = $('.slide-active').attr('style');
+        mainSlide.setAttribute('style', `${bgSrc}`)
     }else{
         textSlide.setAttribute('style', `left: -${currNum*100}%`);
         imgSlide.setAttribute('style', `left: -${currNum*100}%`);
-        currNum += 1;
         if(!imgSlideItm[currNum].classList.contains('slide-active')){
             imgSlideItm[currNum].classList.add('slide-active')
             imgSlideItm[currNum-1].classList.remove('slide-active')
             bgSrc = $('.slide-active').attr('style');
-            console.log(bgSrc);
+            mainSlide.setAttribute('style', `${bgSrc}`)
         }
+        currNum += 1;
     }
 }
 
-setInterval(changeSlide, 1000);
+setInterval(changeSlide, 3000);
 // setTimeout(changeSlide, 20);
