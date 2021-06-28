@@ -5,10 +5,10 @@
 {% load static %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/account/login.css' %}">
 {% if form.errors %}
     <script>alert("ID와 비밀번호를 올바르게 입력해 주시기 바랍니다");</script>
 {% endif %}
-<div>
 
 <div>
     <div>
@@ -24,7 +24,6 @@
         <a href="{% url 'accountapp:create' %}">가입</a>
     </div>
 
-</div>
 </div>
 
 {% endblock content %}
