@@ -18,10 +18,10 @@
                             {% endif %}
                         </div>
                         <div class=" ">
-{#                            <a class=" " href="{% url 'profileapp:profile' target_post.writer.username %}">{{ post.author.username }}</a>#}
+{#                            <a class=" " href="{% url 'accountapp:detail' target_post.writer.username %}">{{ post.writer.username }}</a>#}
                             
                             <div class=" ">{{ target_post.category.name }} |</div>
-                            <div class=" "> {{ target_post.create_at }}</div>
+                            <div class=" "> {{ target_post.created_at }}</div>
                             {% if target_post.modify_date %}
                             <div class=" ">(수정일){{ target_post.modify_date}}</div>
                             {% endif %}
@@ -40,12 +40,12 @@
                             <div class="">댓글</div>
                             <hr class=" ">
 
-                            {% for comment in target_post.comment.all %}
-                                {% include 'commentapp/detail.html' with comment=comment %}
-                            {% endfor %}
+                                {% for comment in target_post.comment.all %}
+                                    {% include 'commentapp/detail.html' with comment=comment %}
+                                {% endfor %}
                             <hr class="">
 
-                            {% include 'commentapp/create.html' with post=target_post %}
+                                {% include 'commentapp/create.html' with post=target_post %}
 
                         </div>
                     </div>

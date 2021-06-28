@@ -7,7 +7,7 @@ from boardapp.models import Post
 
 
 class Comment(models.Model):
-    article = models.ForeignKey(Post, on_delete=models.SET_NULL, null=True, related_name='comment')
+    post = models.ForeignKey(Post, on_delete=models.SET_NULL, null=True, related_name='comment')
     writer = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='comment')
 
     content = models.TextField(null=False)

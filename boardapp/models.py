@@ -15,10 +15,10 @@ class Category(models.Model):
 class Post(models.Model):
 
     writer = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='post')
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name='post')
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, blank=True, null=True, related_name='post')
 
     title = models.CharField(max_length=200)
-    image = models.ImageField(upload_to='post_thumbnail/', null=True)
+    image = models.ImageField(upload_to='post_thumbnail/', null=True, blank=True)
 
     content = FroalaField(plugins=('font_size', 'font_family'), null=True, blank=True, options={
         'toolbarInline': True,

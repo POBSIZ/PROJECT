@@ -9,6 +9,9 @@ def base(request):
 def notice(request):
     return render(request, 'notice.html')
 
+def error(request):
+    return render(request, 'error.html')
+
 # CALENDAR
 def calendar(request):
     return render(request, 'calendar/calendar.html')

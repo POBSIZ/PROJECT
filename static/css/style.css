@@ -28,7 +28,7 @@ body, table, tbody, td, th, tr, p, a, h1, ul, li, input, button{
     /* text-align: center; */
     text-decoration: none;
     list-style: none;
-    border: none;
+    border-radius: 3rem;
 }
 
 body, tbody{
