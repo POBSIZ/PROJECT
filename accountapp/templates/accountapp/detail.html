@@ -40,7 +40,9 @@
         </a>
         {% endif %}
     </div>
-    
+    <div>
+        {% include 'snippets/list_board.html' with post_list=object_list %}
+    </div>
 </div>
 
-{% endblock content %}
+{% endblock %}

@@ -1,49 +1,45 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    {% comment %} <link rel="stylesheet" href="{% static '/css/board/boardDetail.css' %}"> {% endcomment %}
-    <div class="">
+    <link rel="stylesheet" href="{% static '/css/board/post_detail.css' %}">
+    <div class="detail-wrapper">
 
-        <div class="">
+        <div class="detail-inner">
 
-            <div class="">
+            <div class="detail_info">
 
-                <div class="">
-                    <div class=" ">
-                        <div class=" ">{{target_post.title}}</div>
-                        <div class=" ">
-                            {% if request.user == post.writer %}
-                            <a class=" " href="{% url 'boardapp:update' target_post.pk %}">EDIT</a>
-                            <a class=" " href="{% url 'boardapp:delete' target_post.pk %}">DELETE</a>
-                            {% endif %}
-                        </div>
-                        <div class=" ">
-{#                            <a class=" " href="{% url 'accountapp:detail' target_post.writer.username %}">{{ post.writer.username }}</a>#}
-                            
-                            <div class=" ">{{ target_post.category.name }} |</div>
-                            <div class=" "> {{ target_post.created_at }}</div>
-                            {% if target_post.modify_date %}
-                            <div class=" ">(수정일){{ target_post.modify_date}}</div>
-                            {% endif %}
-                        </div>
-                    </div>
+                <div class="detail_info-title">{{target_post.title}}</div>
+                <div class="detail_info-mod">
+                    {% if request.user == post.writer %}
+                    <a class="mod-edit" href="{% url 'boardapp:update' target_post.pk %}">EDIT</a>
+                    <a class="mod-del" href="{% url 'boardapp:delete' target_post.pk %}">DELETE</a>
+                    {% endif %}
+                </div>
+                <div class="detail_info-profile">
+{#                          <a class="profile-user" href="{% url 'accountapp:detail' target_post.writer.username %}">{{ post.writer.username }}</a>#}
+
+                    <div class="detail_info-category">{{ target_post.category.name }} |</div>
+                    <div class="profile-date"> {{ target_post.created_at }}</div>
+                    {% if target_post.modify_date %}
+                    <div class="profile-moday">(수정일){{ target_post.modify_date}}</div>
+                    {% endif %}
                 </div>
 
-                <div class="">
+                <div class="detail_main">
                     {{ target_post.content | safe }}
                 </div>
 
-                <div class="">
-                    <div class=" ">
+                <div class="detail_comment">
+                    <div class="detail_comment-inner">
                         <div class=" ">
 
-                            <div class="">댓글</div>
-                            <hr class=" ">
+                            <div class="detail_comment-titles">댓글</div>
+                            <hr class="divLine">
 
                                 {% for comment in target_post.comment.all %}
                                     {% include 'commentapp/detail.html' with comment=comment %}
                                 {% endfor %}
-                            <hr class="">
+                            <hr class="divLine">
 
                                 {% include 'commentapp/create.html' with post=target_post %}
 
