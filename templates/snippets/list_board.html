@@ -1,19 +1,18 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block content %}
 {% if post_list %}
 <div class="board-inwrapper">
     <div class="boardList__wrapper">
         <ul class="boardList">
             {% for post in post_list %}
-            <a href="{% url 'articleapp:detail' post.pk %}">
+            <a href="{% url 'boardapp:detail' post.pk %}">
                 {% include 'snippets/posting.html' with post=post %}
             </a>
-        {% endfor %}
+            {% endfor %}
         </ul>
     </div>
-
-        <script src="{% static 'js/magicgrid.js' %}"></script>
 </div>
 
 {% else %}
@@ -25,9 +24,9 @@
 {% include 'snippets/pagination.html' with page_obj=page_obj %}
 
 <div style="text-align: center">
-<a href="{% url 'articleapp:create' %}" class="btn btn-dark rounded-pill col-3 mt-3 mb-3">
-    Create Article
-</a>
+    <a href="{% url 'boardapp:create' %}" class="btn btn-dark rounded-pill col-3 mt-3 mb-3">
+        글쓰기
+    </a>
 </div>
 
 {% endblock %}

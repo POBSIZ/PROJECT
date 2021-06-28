@@ -50,7 +50,7 @@ class User(AbstractBaseUser):
     phone = models.CharField(max_length=30)
     email = models.CharField(max_length=256)
     date_of_birth = models.DateField()
-    date_joined = models.DateTimeField()
+    date_joined = models.DateTimeField(auto_now_add=True)
     last_login = models.DateTimeField(blank=True, null=True)
     is_staff = models.IntegerField(blank=True, null=True)
     is_active = models.IntegerField(blank=True, null=True)

@@ -4,53 +4,55 @@
 <link rel="stylesheet" href="{% static '/css/board/list.css' %}">
 
 <div class="container__board">
-
-    <div class="input-group">
-        <input type="text" class="kw" value="{{ kw|default_if_none:'' }}">
-        <div class="input-group-append">
-            <button class="btn" type="button" id="btn_search">검색</button>
-        </div>
-    </div>
-
     <h1 class="TITLE">
         게시글
     </h1>
-
-    {% if post_list %}
-    <div class="container">
-        <li class="boardList__itm">
-            <div class="boardList__itm category">카테고리</div>
-            <div class="boardList__itm userInfo">
-                <div class="boardList__itm userInfo--name">작성자</div>
-                <div class="boardList__itm userInfo--time"> | 작성일</div>
+    <div class="board-inwrapper">
+        <div class="input-group">
+            <input type="text" class="kw" value="{{ kw|default_if_none:'' }}">
+            <div class="input-group-append">
+                <button class="btn" type="button" id="btn_search">검색</button>
             </div>
-            <div class="boardList__itm textInfo">
-                <div class="boardList__itm textInfo--title">제목</div>
-            </div>
-        </li>
-        {% for post in post_list %}
-            <a href="{% url 'boardapp:detail' post.pk %}">
-                {% include 'snippets/posting.html' with post=post %}
-            </a>
-        {% endfor %}
-    </div>
-    {% else %}
-        <div style="text-align: center">
-            <h1>No posting Yet</h1>
         </div>
-    {% endif %}
 
-    {% include 'snippets/pagination.html' with page_obj=page_obj %}
+        <div class="boardList__wrapper">
+             <ul class="boardList">
+            {% if post_list %}
+            <ul class="container">
+                <li class="boardList__itm">
+                    <div class="boardList__itm category">카테고리</div>
+                    <div class="boardList__itm userInfo">
+                        <div class="boardList__itm userInfo--name">작성자</div>
+                        <div class="boardList__itm userInfo--time"> | 작성일</div>
+                    </div>
+                    <div class="boardList__itm textInfo">
+                        <div class="boardList__itm textInfo--title">제목</div>
+                    </div>
+                </li>
+                {% for post in post_list %}
+                    <a class="boardList--link" href="{% url 'boardapp:detail' post.pk %}">
+                        {% include 'snippets/posting.html' with post=post %}
+                    </a>
+                {% endfor %}
+            </ul>
+        </div>
+        {% else %}
+            <div style="text-align: center">
+                <h1>No posting Yet</h1>
+            </div>
+        {% endif %}
 
-    <div class="btn__wrapper">
-        <a class="writeBtn" href="{% url 'boardapp:create' %}">WRITE</a>
+        {% include 'snippets/pagination.html' with page_obj=page_obj %}
+
+        <div class="btn__wrapper">
+            <a class="writeBtn" href="{% url 'boardapp:create' %}">WRITE</a>
+        </div>
+
+        <form id="searchForm" method="GET" action="{% url 'boardapp:list' %}">
+            <input type="hidden" id="kw" name="kw" value="{{ kw|default_if_none:'' }}">
+            <input type="hidden" id="page" name="page" value="{{ page }}">
+        </form>
     </div>
-
-    <form id="searchForm" method="GET" action="{% url 'boardapp:list' %}">
-        <input type="hidden" id="kw" name="kw" value="{{ kw|default_if_none:'' }}">
-        <input type="hidden" id="page" name="page" value="{{ page }}">
-    </form>
-
 </div>
 
 {% endblock %}
@@ -71,4 +73,3 @@ $(document).ready(function(){
 });
 </script>
 {% endblock script %}
-

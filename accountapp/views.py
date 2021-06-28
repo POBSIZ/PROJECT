@@ -73,16 +73,16 @@ def AccountCreateComplete(request):
     return render(request, 'accountapp/createcomplete.html')
 
 
-class AccountDetailView(DetailView):
+class AccountDetailView(DetailView, MultipleObjectMixin):
     model = get_user_model()
     context_object_name = 'target_user'
     template_name = 'accountapp/detail.html'
 
-    # paginate_by = 10
+    paginate_by = 5
 
-    # def get_context_data(self, **kwargs):
-    #     object_list = Post.objects.filter(writer=self.get_object())
-    #     return super(AccountDetailView, self).get_context_data(object_list=object_list)
+    def get_context_data(self, **kwargs):
+        object_list = Post.objects.filter(writer=self.get_object())
+        return super(AccountDetailView, self).get_context_data(object_list=object_list)
 
 
 @method_decorator(has_ownership, 'get')
