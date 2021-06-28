@@ -54,16 +54,16 @@ const changeSlide = ()=>{
         textSlide.setAttribute('style', `left: -${currNum*100}%`);
         imgSlide.setAttribute('style', `left: -${currNum*100}%`);
 
-        if(!imgSlideItm[currNum].classList.contains('slide-active')){
-            imgSlideItm[currNum].classList.add('slide-active')
-            imgSlideItm[currNum-1].classList.remove('slide-active')
-            bgSrc = $('.slide-active').children(".post-img-wrapper").children(".post-img").attr('style');
-        }
-
     }else{
         textSlide.setAttribute('style', `left: -${currNum*100}%`);
         imgSlide.setAttribute('style', `left: -${currNum*100}%`);
         currNum += 1;
+        if(!imgSlideItm[currNum].classList.contains('slide-active')){
+            imgSlideItm[currNum].classList.add('slide-active')
+            imgSlideItm[currNum-1].classList.remove('slide-active')
+            bgSrc = $('.slide-active').attr('style');
+            console.log(bgSrc);
+        }
     }
 }
 
