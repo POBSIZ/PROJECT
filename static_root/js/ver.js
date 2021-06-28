@@ -36,10 +36,10 @@ var sts = 3;
 window.onload = () => {
     if ($(window).width()+17 > 1000){
         sts = 3;
-        console.log(3);
+        // console.log(3);
     }else{
         sts = 1;
-        console.log(1);
+        // console.log(1);
     }
 
     $('.doList').slick({
@@ -68,11 +68,6 @@ window.onload = () => {
             cent0.classList.remove('centOn');
             cent1.classList.add('centOn');
             
-        });
-    }else{
-        const dli = document.querySelectorAll('.doList-itm');
-        dli.forEach(i =>{
-            i.classList.add('centOn')
         });
     }
 
