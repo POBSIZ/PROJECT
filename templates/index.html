@@ -9,9 +9,16 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
+    <!-- FONTAWESOME -->
+    <script src="https://kit.fontawesome.com/8f489167ce.js" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/base/nav.css' %}">
     <link rel="stylesheet" href="{% static 'js/base/nav.js' %}">
+
+    {% block style %}
+    
+    {% endblock %}
     
     <title>PROJECT</title>
 </head>
@@ -26,5 +33,6 @@
     {% block script %}
     {% endblock script %}
     
+    <script src="{% static 'js/base/nav.js' %}"></script>
 </body>
 </html>
