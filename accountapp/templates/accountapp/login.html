@@ -2,29 +2,21 @@
 
 {% block title %}PROJECT Login{% endblock title %}
 
-{% block script %}
-{% load static %} <script src = "{% static 'js/login.js' %}"></script>
-{% endblock script %}
+{% load static %}
 
 {% block content %}
 {% if form.errors %}
     <script>alert("ID와 비밀번호를 올바르게 입력해 주시기 바랍니다");</script>
 {% endif %}
 <div>
+
 <div>
     <div>
+        <script src = "{% static 'js/login.js' %}"></script>
         <form id="login_form" action="." method="POST">
             {% csrf_token %}
-            <div>ID: 
-                <input type="text" name="username" id="username">
-            </div>
-            <div>PASSWARD: 
-                <input type="password" name="password" id="password">
-            </div>
-            <div>
-                <input type="button" value="로그인" onclick="login()">
-                <input type="button" value="회원가입" onclick="location.href='{% url 'account:register' %}'"/>
-            </div>
+            {{ form }}
+            <input type="submit" class=" ">
         </form>
     </div>
     <div>

@@ -1,0 +1,21 @@
+
+{% block content %}
+
+<div style="text-align: center;">
+    <h4>Comment Create</h4>
+    <form action="{% url 'commentapp:create' %}" method="POST">
+        {% csrf_token %}
+        {{ form }}
+
+        {% if user.is_authenticated %}
+        <input type="submit" class="btn btn-primary">
+        {% else %}
+        <a href="{% url 'accountapp:login' %}?next={{ request.path }}">
+            Login
+        </a>
+        {% endif %}
+        <input type="hidden" name="post_pk" value="{{ post.pk }}">
+    </form>
+</div>
+
+{% endblock content %}

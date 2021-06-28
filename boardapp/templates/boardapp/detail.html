@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    {% comment %} <link rel="stylesheet" href="{% static '/css/board/boardDetail.css' %}"> {% endcomment %}
+    <div class="">
+
+        <div class="">
+
+            <div class="">
+
+                <div class="">
+                    <div class=" ">
+                        <div class=" ">{{target_post.title}}</div>
+                        <div class=" ">
+                            {% if request.user == post.writer %}
+                            <a class=" " href="{% url 'boardapp:update' target_post.pk %}">EDIT</a>
+                            <a class=" " href="{% url 'boardapp:delete' target_post.pk %}">DELETE</a>
+                            {% endif %}
+                        </div>
+                        <div class=" ">
+{#                            <a class=" " href="{% url 'profileapp:profile' target_post.writer.username %}">{{ post.author.username }}</a>#}
+                            
+                            <div class=" ">{{ target_post.category.name }} |</div>
+                            <div class=" "> {{ target_post.create_at }}</div>
+                            {% if target_post.modify_date %}
+                            <div class=" ">(수정일){{ target_post.modify_date}}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="">
+                    {{ target_post.content | safe }}
+                </div>
+
+                <div class="">
+                    <div class=" ">
+                        <div class=" ">
+
+                            <div class="">댓글</div>
+                            <hr class=" ">
+
+                            {% for comment in target_post.comment.all %}
+                                {% include 'commentapp/detail.html' with comment=comment %}
+                            {% endfor %}
+                            <hr class="">
+
+                            {% include 'commentapp/create.html' with post=target_post %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+{% endblock %}

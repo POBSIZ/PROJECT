@@ -51,14 +51,14 @@ def Post_create(request):
             post.create_date = timezone.now()
             post.title = request.POST['title']
             ct = Category.objects.get(name__exact=request.POST['category'])
-            post.category = ct # 카테고리 받아와서 넣기
+            post.category = ct  # 카테고리 받아와서 넣기
             post.save()
             return redirect('board:post_list')
     else:
         form = PostForm()
         categories = Category.objects.all()
 
-    context = {'form' : form, 'category' : categories}
+    context = {'form': form, 'category': categories}
     return render(request, 'board/post_create.html', context)
 
 @login_required(login_url='accounts:login')

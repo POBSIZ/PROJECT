@@ -16,6 +16,8 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # BASE_DIR = Path(__file__).resolve().parent.parent
+from django.urls import reverse_lazy
+
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
@@ -34,16 +36,11 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'board',
-    'main',
-    'account',
-    'mainapp',
-    'noticeapp',
     'boardapp',
     'accountapp',
     'profileapp',
-    'ckeditor',
-    'ckeditor_uploader',
+    'commentapp',
+    'froala_editor',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -140,63 +137,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-DJANGO_WYSIWYG_FLAVOR = "ckeditor"
-CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
-CKEDITOR_RESTRICT_BY_USER = True #Only who upload image see it
-CKEDITOR_UPLOAD_PATH = 'uploads/'
-CKEDITOR_BROWSE_SHOW_DIRS = True # Shows directory of image in the server
-CKEDITOR_RESTRICT_BY_DATE = True # Arranges image in terms of date uploaded
-CKEDITOR_IMAGE_BACKEND = "pillow"
+LOGIN_REDIRECT_URL = reverse_lazy('home')
+LOGOUT_REDIRECT_URL = reverse_lazy('accountapp:login')
 
-# CKEDITOR_CONFIGS = {
-#     'default': {
-#         'skin': 'moono',
-#         'toolbar': None,
-#     },
-# }
-
-CKEDITOR_CONFIGS = {
-    'default': {
-        # 'skin': 'moono',
-        'toolbar_Basic': [
-            ['Source', '-', 'Bold', 'Italic']
-        ],
-        'toolbar_YourCustomToolbarConfig': [
-            {'name': 'document', 'items': ['Source']},
-            {'name': 'basicstyles',
-             'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat']},
-            {'name': 'paragraph',
-             'items': ['NumberedList', 'BulletedList', '-', 'Blockquote', '-',
-                       'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']},
-            {'name': 'insert',
-             'items': ['Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak']}, # 'Image', 이미지는 불안정함
-            '/',
-            {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},
-            {'name': 'colors', 'items': ['TextColor', 'BGColor']},
-            {'name': 'tools', 'items': ['Maximize']},
-        ],
-        'toolbar': 'YourCustomToolbarConfig',  # put selected toolbar config here
-        'tabSpaces': 4,
-        'extraPlugins': ','.join([
-            'uploadimage', # the upload image feature
-            # your extra plugins here
-            'div',
-            'autolink',
-            'autoembed',
-            'embedsemantic',
-            'autogrow',
-            # 'devtools',
-            'widget',
-            'lineutils',
-            'clipboard',
-            'dialog',
-            'dialogui',
-            'elementspath'
-        ]),
-    }
-}
-
-LOGIN_REDIRECT_URL = '/main/'
-LOGOUT_REDIRECT_URL = '/main/'
-
-AUTH_USER_MODEL = 'account.user'
+AUTH_USER_MODEL = 'accountapp.user'

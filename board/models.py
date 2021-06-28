@@ -1,6 +1,5 @@
 from django.db import models
-# from django.contrib.auth.models import User
-from ckeditor_uploader.fields import RichTextUploadingField
+from django.contrib.auth.models import User
 from django.conf import settings
 
 User = settings.AUTH_USER_MODEL
@@ -13,7 +12,7 @@ class Category(models.Model):
 
 class Post(models.Model):
     title = models.CharField(max_length=200)
-    content = RichTextUploadingField(null=True, blank=True)
+    content = models.TextField()
     create_date = models.DateTimeField()
     modify_date = models.DateTimeField(null=True, blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
