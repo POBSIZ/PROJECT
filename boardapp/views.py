@@ -25,15 +25,13 @@ def Post_create(request):
             post = form.save(commit=False)
             post.writer = request.user
             post.title = request.POST['title']
-            ct = Category.objects.get(name__exact=request.POST['category'])
-            post.category = ct  # 카테고리 받아와서 넣기
             post.save()
-            return redirect('board:post_list')
+            return redirect('boardapp:list')
     else:
         form = PostCreationForm()
         categories = Category.objects.all()
 
-    context = {'form': form, 'category': categories}
+    context = {'form': form }
     return render(request, 'boardapp/create.html', context)
 
 
@@ -69,4 +67,11 @@ class PostListView(ListView):
     model = Post
     context_object_name = 'post_list'
     template_name = 'boardapp/list.html'
+
     paginate_by = 5
+
+    ordering = ['-pk']
+
+
+
+

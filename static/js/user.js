@@ -6,7 +6,7 @@ function idCheck(){
     
     $.ajax({
         type: "POST",
-        url: "/account/user_register_idcheck/",
+        url: "/accounts/idcheck/",
         data: {
             'username' : $('#username').val(),
             'csrfmiddlewaretoken' : $("input[name=csrfmiddlewaretoken]").val()

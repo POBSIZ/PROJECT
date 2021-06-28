@@ -18,7 +18,7 @@ class CommentCreateView(CreateView):
 
     def form_valid(self, form):
         temp_comment = form.save(commit=False)
-        temp_comment.article = Post.objects.get(pk=self.request.POST['post_pk'])
+        temp_comment.post = Post.objects.get(pk=self.request.POST['post_pk'])
         temp_comment.writer = self.request.user
         temp_comment.save()
         return super().form_valid(form)

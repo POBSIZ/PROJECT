@@ -36,6 +36,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'mainapp',
     'boardapp',
     'accountapp',
     'profileapp',
@@ -137,7 +138,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-LOGIN_REDIRECT_URL = reverse_lazy('home')
+AUTH_USER_MODEL = 'accountapp.User'
+
+LOGIN_REDIRECT_URL = reverse_lazy('mainapp:main')
 LOGOUT_REDIRECT_URL = reverse_lazy('accountapp:login')
 
-AUTH_USER_MODEL = 'accountapp.user'

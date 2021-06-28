@@ -8,10 +8,10 @@
         <a href="{% url 'boardapp:list' %}" class="navList-itm">게시판</a>
         <a href="{% url 'mainapp:notice' %}" class="navList-itm">소식</a>
         {% if user.username %}
-            <a href="{% url 'accountapp:detail' user.username %}" class="navList-itm">{{user.realname}}님 </a>
-            <a href="{% url 'accountapp:logout' %}" class="navList-itm">로그아웃</a>
+            <a href="{% url 'accountapp:detail' user.pk %}" class="navList-itm">{{user.realname}}님 </a>
+            <a href="{% url 'accountapp:logout' %}?next={{ request.path }}" class="navList-itm">로그아웃</a>
         {% else %}
-            <a href="{% url 'accountapp:login' %}" class="navList-itm">로그인</a>
+            <a href="{% url 'accountapp:login' %}?next={{ request.path }}" class="navList-itm">로그인</a>
         {% endif %}
     </div>
 
@@ -21,10 +21,10 @@
         <a href="{% url 'boardapp:list' %}" class="navList-itm">게시판</a>
         <a href="{% url 'mainapp:notice' %}" class="navList-itm">소식</a>
         {% if user.username %}
-            <a href="{% url 'profileapp:detail' user.username %}" class="navList-itm">{{user.realname}}님 </a>
-            <a href="{% url 'accountapp:logout' %}" class="navList-itm">로그아웃</a>
+            <a href="{% url 'accountapp:detail' user.pk %}" class="navList-itm">{{user.realname}}님 </a>
+            <a href="{% url 'accountapp:logout' %}?next={{ request.path }}" class="navList-itm">로그아웃</a>
         {% else %}
-            <a href="{% url 'accountapp:login' %}" class="navList-itm">로그인</a>
+            <a href="{% url 'accountapp:login' %}?next={{ request.path }}" class="navList-itm">로그인</a>
         {% endif %}
         
     </div>

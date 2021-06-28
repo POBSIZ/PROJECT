@@ -15,6 +15,7 @@ class UserManager(BaseUserManager):
             phone=phone,
             date_of_birth=date_of_birth,
             date_joined=timezone.now(),
+            is_superuser=0,
             is_staff=0,
             is_active=1,
         )
@@ -37,11 +38,6 @@ class UserManager(BaseUserManager):
         user.is_superuser = 1
         user.is_staff = 1
 
-        profile = Profile()
-        profile.user = user
-        profile.save()
-        user.profile = profile
-
         user.save(using=self._db)
         return user
 
@@ -49,6 +45,7 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser):
     password = models.CharField(max_length=128)
     username = models.CharField(unique=True, max_length=150)
+    is_superuser = models.IntegerField(blank=True, null=True)
     realname = models.CharField(max_length=128)
     phone = models.CharField(max_length=30)
     email = models.CharField(max_length=256)
@@ -58,6 +55,7 @@ class User(AbstractBaseUser):
     is_staff = models.IntegerField(blank=True, null=True)
     is_active = models.IntegerField(blank=True, null=True)
     first_name = models.CharField(max_length=30, blank=True, null=True)
+    last_name = models.CharField(max_length=30, blank=True, null=True)
 
     objects = UserManager()
 
