@@ -25,7 +25,7 @@ function cancelMenberRegister() {
     var result = confirm("회원가입을 취소하시겠습니까?");
     
     if(result){
-        $(location).attr('href', 'account:login');
+        $(location).attr('href', 'accountapp:login');
     }
 }
 

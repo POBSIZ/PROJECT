@@ -13,7 +13,7 @@ from boardapp.models import Post, Category
 from commentapp.forms import CommentCreationForm
 
 
-@login_required(login_url='account:login')
+@login_required(login_url='accountapp:login')
 def Post_create(request):
     """
     글 등록
