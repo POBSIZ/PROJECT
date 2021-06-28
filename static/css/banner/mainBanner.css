@@ -7,49 +7,63 @@
 
 .mainBanner-inner{
     font-size: 0;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-color: #00000075;
 }
 
 /* TEXT */
 .mainBanner_text{
     display: inline-block;
-    width: 50%;
-    height: 600px;
+    width: 30%;
     font-size: 15px;
     vertical-align: top;
+    overflow: hidden;
+    padding: 13% 0;
 }
 
 .mainBanner_text-inner{
-    width: 100vw;
+    width: 500%;
     position: relative;
     font-size: 0;
-    /* left: -101%; */
+    /* left: -100%; */
 }
 
 .mainBanner_text-itm{
     display: inline-block;
     font-size: 15px;
-    width: 50%;
-    
+    width: 20%;
+    padding: 0 2%;
+    color: #fff;
+}
+
+.mainBanner_text-itm > h2{
+    font-size: 50px;
+    margin: 2% 0;
 }
 
 /* IMG */
 .mainBanner_img{
     display: inline-block;
-    width: 50%;
-    height: 600px;
+    width: 70%;
     font-size: 15px;
+    overflow: hidden;
 }
 
 .mainBanner_img-inner{
-    width: 100vw;
     position: relative;
+    width: 500%;
     font-size: 0;
-    /* left: -101%; */
+    /* left: -100%; */
 }
 
 .mainBanner_img-itm{
     display: inline-block;
-    width: 50%;
+    width: 20%;
     padding-bottom: 600px;
-    background-color: #000;
+
+    /* background-color: #000; */
+    background-size: contain !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
 }

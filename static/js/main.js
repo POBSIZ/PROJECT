@@ -58,10 +58,10 @@ window.onload = () => {
             cent0.classList.remove('centOn');
             cent1.classList.add('centOn');
         });
+        var cent1s = document.querySelectorAll('.slick-active')[1];
+        cent1s.classList.add('centOn');
     }
 
-    var cent1s = document.querySelectorAll('.slick-active')[1];
-    cent1s.classList.add('centOn');
 
 }
 

@@ -1,14 +1,14 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/banner/mainBanner.css' %}">
 
-<article class="mainBanner">
+<article class="mainBanner" style="background: url('{% static 'img/test.jpg' %}');">
     <div class="mainBanner-inner">
 
         <div class="mainBanner_text">
             <div class="mainBanner_text-inner">
 
                 <div class="mainBanner_text-itm">
-                    <h5>Title</h5>
+                    <h2>Title1</h2>
                     <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias sapiente impedit voluptates veritatis
                         deserunt, eveniet possimus fugit? Non quidem nulla dolore a laudantium pariatur eum nobis consequuntur
@@ -17,7 +17,7 @@
                 </div>
     
                 <div class="mainBanner_text-itm">
-                    <h5>Title</h5>
+                    <h2>Title2</h2>
                     <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias sapiente impedit voluptates veritatis
                         deserunt, eveniet possimus fugit? Non quidem nulla dolore a laudantium pariatur eum nobis consequuntur
@@ -31,9 +31,9 @@
         <div class="mainBanner_img">
             <div class="mainBanner_img-inner">
 
-                <div class="mainBanner_img-itm" style="background-color: url('{% static 'img/test.jpg' %}');"></div>
+                <div class="mainBanner_img-itm" style="background: url('{% static 'img/test.jpg' %}');"></div>
                 
-                <div class="mainBanner_img-itm" style="background-color: url('{% static 'img/test.jpg' %}');"></div>
+                <div class="mainBanner_img-itm" style="background: url('{% static 'img/none.jpg' %}');"></div>
 
             </div>    
         </div>
