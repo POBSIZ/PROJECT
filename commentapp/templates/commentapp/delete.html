@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div style="text-align: center;">
+    <h2>Delete comment : {{ target_comment.content }}</h2>
+    <form action="{% url 'commentapp:delete' target_comment.pk %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" class="btn btn-danger">
+    </form>
+</div>
+
+{% endblock content %}

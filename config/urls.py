@@ -18,10 +18,19 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 
+from boardapp.views import PostListView
+
 urlpatterns = [
-    path('main/', include('main.urls')),
-    path('board/', include('board.urls')),
-    path('account/', include('account.urls')),
-    path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('', include('mainapp.urls')),
+
     path('admin/', admin.site.urls),
+
+    path('boards/', include('boardapp.urls')),
+    path('accounts/', include('accountapp.urls')),
+    path('profiles/', include('profileapp.urls')),
+    path('comments/', include('commentapp.urls')),
+
+    path('froala_editor/', include('froala_editor.urls')),
+
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

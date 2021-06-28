@@ -1,0 +1,17 @@
+<li class="boardList__itm">
+    <div class="boardList__itm category">{{ post.category }}</div>
+    <div class="boardList__itm userInfo">
+        <div class="boardList__itm userInfo--name">{{ post.writer.username }}</div>
+        <div class="boardList__itm userInfo--time"> | {{ post.create_at }}</div>
+    </div>
+    <div class="boardList__itm textInfo">
+        <div class="boardList__itm textInfo--title">
+            {{ post.title }}
+        </div>
+        {% if post.comment_set.count > 0 %}
+            <div class="boardList__itm textInfo--title">
+                [{{ post.comment_set.count }}]
+            </div>
+        {% endif %}
+    </div>
+</li>
