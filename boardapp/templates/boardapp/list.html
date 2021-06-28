@@ -16,21 +16,6 @@
         </div>
 
         <div class="boardList__wrapper">
-<<<<<<< HEAD
-             <ul class="boardList">
-            {% if post_list %}
-                <li class="boardList__itm">
-                    <div class="boardList__itm category">카테고리</div>
-                    <div class="boardList__itm userInfo">
-                        <div class="boardList__itm userInfo--name">작성자</div>
-                        <div class="boardList__itm userInfo--time"> | 작성일</div>
-                    </div>
-                    <div class="boardList__itm textInfo">
-                        <div class="boardList__itm textInfo--title">제목</div>
-                    </div>
-                </li>
-                {% for post in post_list %}
-=======
             <ul class="boardList">
                 {% if post_list %}
                     <li class="boardList__itm">
@@ -44,7 +29,6 @@
                         </div>
                     </li>
                     {% for post in post_list %}
->>>>>>> 9c1e454369f3dce1aa6c3dafe4d139b74346e977
                     <a class="boardList--link" href="{% url 'boardapp:detail' post.pk %}">
                         {% include 'snippets/posting.html' with post=post %}
                     </a>
@@ -52,15 +36,9 @@
             </ul>
         </div>
         {% else %}
-<<<<<<< HEAD
-            <div style="text-align: center">
-                <h1>No posting Yet</h1>
-            </div>
-=======
         <div style="text-align: center">
             <h1>No posting Yet</h1>
         </div>
->>>>>>> 9c1e454369f3dce1aa6c3dafe4d139b74346e977
         {% endif %}
 
         {% include 'snippets/pagination.html' with page_obj=page_obj %}
