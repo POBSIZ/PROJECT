@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="ko">
 
-{% include 'head.html' %}
+{% include './base/head.html' %}
 
 <body>
 
-    {% include "header.html" %}
+    {% include "./base/nav.html" %}
 
     {% if request.path == '/' %}
         {% include "banner/mainBanner.html" %}

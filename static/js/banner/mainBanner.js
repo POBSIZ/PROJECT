@@ -46,7 +46,7 @@ $(".mainBanner_img-inner").on('touchend',function(event){
 //    console.log('X: ' + endX + ' Y: ' + endY)
 });
 
-const setNum = 2;
+const setNum = 3;
 var currNum = 0;
 const changeSlide = ()=>{
     if(currNum == setNum){
