@@ -49,13 +49,4 @@
 
 
 
-/* CKEDITOR */
-.django-ckeditor-widget{
-    width: 100% !important;
-}
-#cke_id_content{
-    width: 100% !important;
-}
-#cke_1_contents{
-    min-height: 500px !important;
-}
+/* FLORAL */
