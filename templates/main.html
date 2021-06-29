@@ -18,7 +18,7 @@
     <div id="lottie"></div>
 </div>     {% endcomment %}
 
-{% include "banner/mainBanner.html" %}
+{% comment %} {% include "banner/mainBanner.html" %} {% endcomment %}
 
 <div class="info-wrapper">
     <article class="info_tab">
@@ -74,10 +74,6 @@
         </ul>
     </div>
 </article>
-
-<footer class="footer">
-    
-</footer>
 
 <script>
     var jsonPath = "{% static 'json/data.json' %}"

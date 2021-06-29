@@ -29,9 +29,9 @@ window.onload = () => {
     document.addEventListener('scroll', function(e) {
         console.log(window.scrollY)
         // INFO
-        if (window.scrollY > 150) {
-            document.querySelector('.info_tab').setAttribute('style', 'top: 0; opacity: 100%;');
-        }
+        // if (window.scrollY > 150) {
+        //     document.querySelector('.info_tab').setAttribute('style', 'top: 0; opacity: 100%;');
+        // }
     });
     
 

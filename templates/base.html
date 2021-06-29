@@ -7,11 +7,18 @@
 
     {% include "header.html" %}
 
+    {% if request.path == '/' %}
+        {% include "banner/mainBanner.html" %}
+    {% endif %}
+
+
     <div class="container">
         {% block content %}
         {% endblock %}
     </div>
     
+    {% include "./base/footer.html" %}
+
     {% block script %}
     {% endblock script %}
     

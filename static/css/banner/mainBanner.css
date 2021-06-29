@@ -4,7 +4,7 @@
     height: 600px;
     overflow: hidden;
     transition: all .5s;
-    padding: 10px;
+    /* padding: 10px; */
 }
 
 .mainBanner-inner{
@@ -65,7 +65,7 @@
 .mainBanner_img-itm{
     display: inline-block;
     width: 20%;
-    padding-bottom: 560px;
+    padding-bottom: 580px;
 
     /* background-color: #000; */
     background-size: contain !important;
