@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 
+{% load static %}
 {% include './base/head.html' %}
 
 <body>
@@ -21,6 +22,7 @@
 
     {% block script %}
     {% endblock script %}
+    <script src="{% static 'js/base/nav.js' %}"></script>   
     
 </body>
 </html>

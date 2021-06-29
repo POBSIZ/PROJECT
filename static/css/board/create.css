@@ -49,4 +49,8 @@
 
 
 
-/* FLORAL */
+/* FROALA */
+
+.fr-box.fr-basic .fr-element{
+    min-height: 400px !important;
+}
