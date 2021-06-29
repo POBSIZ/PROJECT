@@ -3,6 +3,7 @@ from django.db import models
 from froala_editor.fields import FroalaField
 from django.conf import settings
 User = settings.AUTH_USER_MODEL
+from django.contrib.auth import get_user_model
 
 
 class Category(models.Model):

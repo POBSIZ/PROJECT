@@ -16,4 +16,6 @@ urlpatterns = [
     path('create/', AccountCreate, name='create'),
     path('idcheck/', AccountIDCheck, name='accountidcheck'),
     path('create_complete/', AccountCreateComplete, name='createcomplete'),
+    path('profile/delete/', profile_delete_view, name='profile_delete'),
+
 ]
