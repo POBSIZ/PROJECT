@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.conf import settings
 
 User = settings.AUTH_USER_MODEL
+from django.contrib.auth import get_user_model
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, models.CASCADE, related_name='profile')

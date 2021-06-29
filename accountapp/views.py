@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 # reverse : 함수형에서 사용  reverse_lazy : 클래스형에서 사용
@@ -18,9 +19,10 @@ from django.utils.decorators import method_decorator
 from boardapp.models import Post
 # from django.conf import settings
 # User = settings.AUTH_USER_MODEL
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, logout
 
 has_ownership = [account_ownership_required, login_required]
+
 
 def AccountIDCheck(request):
     if (request.method == 'POST'):
@@ -102,3 +104,22 @@ class AccountDeleteView(DeleteView):
     context_object_name = 'target_user'
     success_url = reverse_lazy('accountapp:login')
     template_name = 'accountapp/delete.html'
+
+
+from .forms import CheckPasswordForm
+
+
+@login_required(login_url='accounts:login')
+def profile_delete_view(request):
+    if request.method == 'POST':
+        password_form = CheckPasswordForm(request.user, request.POST)
+
+        if password_form.is_valid():
+            request.user.delete()
+            logout(request)
+            messages.success(request, "회원탈퇴가 완료되었습니다.")
+            return redirect('/accounts/login/')
+    else:
+        password_form = CheckPasswordForm(request.user)
+
+    return render(request, 'accountapp/user_delete.html', {'password_form': password_form})

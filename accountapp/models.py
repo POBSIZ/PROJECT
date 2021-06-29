@@ -14,7 +14,6 @@ class UserManager(BaseUserManager):
             email=self.normalize_email(email),
             phone=phone,
             date_of_birth=date_of_birth,
-            date_joined=timezone.now(),
             is_superuser=0,
             is_staff=0,
             is_active=1,
@@ -54,8 +53,8 @@ class User(AbstractBaseUser):
     last_login = models.DateTimeField(blank=True, null=True)
     is_staff = models.IntegerField(blank=True, null=True)
     is_active = models.IntegerField(blank=True, null=True)
-    first_name = models.CharField(max_length=30, blank=True, null=True)
-    last_name = models.CharField(max_length=30, blank=True, null=True)
+    # first_name = models.CharField(max_length=30, blank=True, null=True)
+    # last_name = models.CharField(max_length=30, blank=True, null=True)
 
     objects = UserManager()
 
