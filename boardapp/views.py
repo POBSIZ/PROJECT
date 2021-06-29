@@ -25,7 +25,8 @@ def Post_create(request):
             post = form.save(commit=False)
             post.writer = request.user
             post.title = request.POST['title']
-            post.category = request.POST['category']
+            category = Category(name=request.POST['category']).save()
+            post.category = category
             post.save()
             return redirect('boardapp:list')
     else:
