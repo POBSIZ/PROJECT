@@ -29,6 +29,7 @@ urlpatterns = [
     path('accounts/', include('accountapp.urls')),
     path('profiles/', include('profileapp.urls')),
     path('comments/', include('commentapp.urls')),
+    path('notices/', include('noticeapp.urls')),
 
     path('froala_editor/', include('froala_editor.urls')),
 

@@ -10,7 +10,7 @@
 
                 <div class="detail_info-title">{{target_post.title}}</div>
                 <div class="detail_info-mod">
-                    {% if request.user == post.writer %}
+                    {% if request.user == target_post.writer %}
                     <a class="mod-edit" href="{% url 'boardapp:update' target_post.pk %}">EDIT</a>
                     <a class="mod-del" href="{% url 'boardapp:delete' target_post.pk %}">DELETE</a>
                     {% endif %}

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'accountapp',
     'profileapp',
     'commentapp',
+    'noticeapp',
     'froala_editor',
     'django.contrib.admin',
     'django.contrib.auth',

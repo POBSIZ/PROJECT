@@ -19,7 +19,7 @@
         <a href="{% url 'mainapp:main' %}" class="navList-itm">홈</a>
         <a href="{% url 'mainapp:calendar' %}" class="navList-itm">예약</a>
         <a href="{% url 'boardapp:list' %}" class="navList-itm">게시판</a>
-        <a href="{% url 'mainapp:notice' %}" class="navList-itm">소식</a>
+        <a href="{% url 'noticeapp:list' %}" class="navList-itm">소식</a>
         {% if user.username %}
             <a href="{% url 'accountapp:detail' user.pk %}" class="navList-itm">{{user.realname}}님 </a>
             <a href="{% url 'accountapp:logout' %}?next={{ request.path }}" class="navList-itm">로그아웃</a>

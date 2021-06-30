@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block script %}
+    <script src = "{% static 'js/board.js' %}"></script>
+{% endblock script %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static '/css/board/create.css' %}">
+    <div class="container__writeForm">
+        <div class="write__wrapper">
+            <form method="POST" enctype="multipart/form-data">
+                <h1 class="TITLE">WRITE</h1>
+            
+                {% csrf_token %}
+                <div class="opt-wrapper">
+                    <input 
+                        type="text" 
+                        name="title"
+                        id="title"
+                        placeholder="TITLE"
+                    >
+                </div>
+
+                {{ form.media }}
+                {{ form.as_p }}
+
+                
+                <input class="write-submit" type="submit" value="저장">
+            </form>
+        </div>
+    </div>
+{% endblock %}

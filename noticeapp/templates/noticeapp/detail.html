@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" href="{% static '/css/board/post_detail.css' %}">
+    <div class="detail-wrapper">
+
+        <div class="detail-inner">
+
+            <div class="detail_info">
+
+                <div class="detail_info-title">{{target_notice.title}}</div>
+                <div class="detail_info-mod">
+                    {% if request.user == target_notice.writer %}
+                    <a class="mod-edit" href="{% url 'noticeapp:update' target_notice.pk %}">EDIT</a>
+                    <a class="mod-del" href="{% url 'noticeapp:delete' target_notice.pk %}">DELETE</a>
+                    {% endif %}
+                </div>
+                <div class="detail_info-profile">
+{#                          <a class="profile-user" href="{% url 'accountapp:detail' target_notice.writer.username %}">{{ notice.writer.username }}</a>#}
+
+                    <div class="profile-date"> {{ target_notice.created_at }}</div>
+                    {% if target_notice.modify_date %}
+                    <div class="profile-moday">(수정일){{ target_notice.modify_date}}</div>
+                    {% endif %}
+                </div>
+
+                <div class="detail_main">
+                    {{ target_notice.content | safe }}
+                </div>
+
+            </div>
+            
+        </div>
+
+    </div>
+{% endblock %}
