@@ -127,7 +127,7 @@
 .resv-bg{
     width: 90%;
     position: relative;
-    padding: 5% 5%;
+    padding: 3%;
     background-color: #ffffff;
     height: fit-content;
     top: 50%;
@@ -143,6 +143,20 @@
     text-align: right;
     float: right;
 }
+
+.resv_info > .resv_ym{
+    text-align: center;
+}
+
+.resv_info > .resv-remain{
+    text-align: center;
+}
+
+.resv_info > h3{
+    margin: 2% 0;
+    text-align: center;
+}
+
 
 /* 예약인 리스트 */
 .resv-list{
@@ -179,11 +193,20 @@
 
 .resv_set{
     cursor: pointer;
-    width: 80%;
+    width: 50%;
     margin: auto;
     margin-top: 10px;
     font-size: 20px;
 }
+.resv_set.time{
+    width: 100%;
+    text-align: center;
+    border: 2px solid var(--BG);
+    font-size: 15px;
+}
+.resv_btn.purchase{width: 100%;}
+.resv_btn.cancel{width: 100%;}
+
 
 .resv_btn{
     cursor: pointer;

@@ -7,6 +7,10 @@
     text-align: left;
 }
 
+.write__wrapper > form{
+    overflow: hidden;
+}
+
 /* OPTION */
 .opt-wrapper{
     width: 100%;
@@ -36,10 +40,20 @@
 }
 
 
+/* THUMBNAIL */
+.write__wrapper > form p {
+    margin-top: 20px;
+}
+
+.thum{}
+
+
 /* SUBMIT */
 .write-submit{
     cursor: pointer;
+    position: relative;
     float: right;
+    clear: both;
     margin-top: 20px;
     padding: 5px 30px 3px 30px;
     font-size: 16px;

@@ -7,6 +7,17 @@ exitBtn.addEventListener('click', ()=>{
 });
 
 
+const o_year = document.querySelector('.year');
+const o_month = document.querySelector('.month');
+const year = document.querySelector('.resv-year');
+const month = document.querySelector('.resv-month');
+const day = document.querySelector('.resv-day');
+const changeYMD = (d)=>{
+    year.textContent = o_year.textContent;
+    month.textContent = o_month.textContent;
+    day.textContent = d.textContent;
+}
+
 // 날짜별로 이벤트 등록용 함수 및 변수
 const selDate = []
 const dateFunc = ()=>{
@@ -26,11 +37,13 @@ const dateFunc = ()=>{
                 i.classList.add('selected');
                 selDate.push([year.innerHTML, month.innerHTML, i.innerHTML]);
                 resvTab.classList.add('open');
+                changeYMD(i.children[0]);
                 nav.setAttribute('style', 'z-index: 0;');
             }else{
                 i.classList.add('selected');
                 selDate.push([year.innerHTML, month.innerHTML, i.innerHTML]);
                 resvTab.classList.add('open');
+                changeYMD(i.children[0]);
                 nav.setAttribute('style', 'z-index: 0;');
             }
         });

@@ -99,13 +99,13 @@
     color: var(--BG);
 }
 .boardList__itm.category{
-    width: 10%;
+    width: 20%;
 }
 .boardList__itm.userInfo{
-    width: 40%;
+    width: 50%;
 }
 .boardList__itm.textInfo{
-    width: 50%;
+    width: 30%;
 }
 
 .boardList__itm > div{
@@ -155,4 +155,10 @@
     width: 100%;
     height: 2px;
     background-color: var(--light);
+}
+
+@media screen and (max-width: 900px){
+    .input-group{
+        width: 75%;
+    }
 }

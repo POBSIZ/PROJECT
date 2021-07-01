@@ -12,6 +12,3 @@ def notice(request):
 def error(request):
     return render(request, 'error.html')
 
-# CALENDAR
-def calendar(request):
-    return render(request, 'calendar/calendar.html')

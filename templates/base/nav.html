@@ -4,7 +4,7 @@
 
     <div class="mobile-navList">
         <a href="{% url 'mainapp:main' %}" class="navList-itm">홈</a>
-        <a href="{% url 'mainapp:calendar' %}" class="navList-itm">예약</a>
+        <a href="{% url 'calendarapp:calendar_main' %}" class="navList-itm">예약</a>
         <a href="{% url 'boardapp:list' %}" class="navList-itm">게시판</a>
         <a href="{% url 'mainapp:notice' %}" class="navList-itm">소식</a>
         {% if user.username %}
@@ -17,7 +17,7 @@
 
     <div class="navList">
         <a href="{% url 'mainapp:main' %}" class="navList-itm">홈</a>
-        <a href="{% url 'mainapp:calendar' %}" class="navList-itm">예약</a>
+        <a href="{% url 'calendarapp:calendar_main' %}" class="navList-itm">예약</a>
         <a href="{% url 'boardapp:list' %}" class="navList-itm">게시판</a>
         <a href="{% url 'noticeapp:list' %}" class="navList-itm">소식</a>
         {% if user.username %}

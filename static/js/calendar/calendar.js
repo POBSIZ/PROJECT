@@ -58,10 +58,9 @@ const renderCalender = () => {
     const today = new Date();
     if (viewMonth === today.getMonth() && viewYear === today.getFullYear()) {
         for (let date of document.querySelectorAll('.date-itm')) {
-            if (+date.innerText === today.getDate()) {
+            if (+date.innerText === today.getDate() && !date.parentElement.classList.contains('other')) {
                 date.parentNode.classList.add('today');
                 break;
-
             }
         }
     }
