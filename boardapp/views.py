@@ -53,7 +53,7 @@ class PostUpdateView(UpdateView):
     template_name = 'boardapp/update.html'
 
     def get_success_url(self):
-        return reverse('board:detail', kwargs={'pk': self.object.pk})
+        return reverse('boardapp:detail', kwargs={'pk': self.object.pk})
 
 
 @method_decorator(post_ownership_required, 'get')
@@ -61,7 +61,7 @@ class PostUpdateView(UpdateView):
 class PostDeleteView(DeleteView):
     model = Post
     context_object_name = 'target_post'
-    success_url = reverse_lazy('post:list')
+    success_url = reverse_lazy('boardapp:list')
     template_name = 'boardapp/delete.html'
 
 
