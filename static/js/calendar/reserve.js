@@ -1,3 +1,20 @@
+var $crf_token = $('[name="csrfmiddlewaretoken"]').attr('value');
+const getView = (viewData)=>{
+    $.ajax({
+        type: "POST",
+        url: "view/",
+        headers:{"X-CSRFToken": $crf_token},
+        data: viewData,
+        dataType: "json",
+        success: function (response) {
+            $('.remain').html(response.remain);
+            // console.log('object :>> ', response.remain);
+        },
+        error: function (request, status, error) { },
+    });
+}
+
+// RESV NAV CHANGER
 const nav = document.querySelector('.navBar');
 const resvTab = document.querySelector('.resv-wrapper');
 const exitBtn = document.querySelector('.resv-close');
@@ -6,7 +23,7 @@ exitBtn.addEventListener('click', ()=>{
     nav.setAttribute('style', 'z-index: 10;');
 });
 
-
+// CHANGE YMD
 const o_year = document.querySelector('.year');
 const o_month = document.querySelector('.month');
 const year = document.querySelector('.resv-year');
@@ -27,6 +44,18 @@ const dateFunc = ()=>{
     dates.forEach((i)=>{
         // console.log('DATE LOAD')
         i.addEventListener('click', ()=>{
+            a_year = year.innerHTML;
+            a_month = month.innerHTML;
+            a_day = i.children[0].innerHTML;
+            a_day = a_day.replace(/(\r\n\t|\n|\r\t)/gm,"");
+            a_day = a_day.trim();
+            data = {
+                'a_ymd': `${a_year}-${a_month}-${a_day}`,
+                'a_year': a_year,
+                'a_month': a_month,
+                'a_day': a_day,
+                // 'a_time': car,
+            }
             if(i.classList.contains('other') || i.classList.contains('selected')){
                 dates.forEach((ig)=>{ig.classList.remove('selected');});
                 i.classList.remove('selected');
@@ -38,17 +67,96 @@ const dateFunc = ()=>{
                 selDate.push([year.innerHTML, month.innerHTML, i.innerHTML]);
                 resvTab.classList.add('open');
                 changeYMD(i.children[0]);
+                getView(data);
                 nav.setAttribute('style', 'z-index: 0;');
             }else{
                 i.classList.add('selected');
                 selDate.push([year.innerHTML, month.innerHTML, i.innerHTML]);
                 resvTab.classList.add('open');
                 changeYMD(i.children[0]);
+                getView(data);
                 nav.setAttribute('style', 'z-index: 0;');
             }
         });
     });
 };
+
+
+// RESV POST
+const postBtn = document.querySelector('.purchase');
+postBtn.addEventListener('click', ()=>{
+    console.log('object :>> ');
+    const year = document.querySelector('.year');
+    const month = document.querySelector('.month');
+    const day = document.querySelector('.resv-day');
+    const time = document.querySelector('.time');
+    a_year = year.innerHTML;
+    a_month = month.innerHTML;
+    a_day = day.innerHTML;
+    a_day = a_day.replace(/(\r\n\t|\n|\r\t)/gm,"");
+    a_day = a_day.trim();
+    a_time = time.value;
+    data = {
+        'a_ymd': `${a_year}-${a_month}-${a_day}`,
+        'a_year': a_year,
+        'a_month': a_month,
+        'a_day': a_day,
+        'a_time': a_time,
+    }
+    $.ajax({
+        type: "POST",
+        url: "resv/",
+        headers:{"X-CSRFToken": $crf_token},
+        data: data,
+        dataType: "json",
+        success: function (response) {
+            if(response.remain == false){
+                alert('이미 예약이 되어있습니다.')
+            }else{
+                $('.remain').html(response.remain);
+            }
+        },
+        error: function (request, status, error) { },
+    });
+});
+
+// RESV CANCEL
+const cancelBtn = document.querySelector('.cancel');
+cancelBtn.addEventListener('click', ()=>{
+    const year = document.querySelector('.year');
+    const month = document.querySelector('.month');
+    const day = document.querySelector('.resv-day');
+    const time = document.querySelector('.time');
+    a_year = year.innerHTML;
+    a_month = month.innerHTML;
+    a_day = day.innerHTML;
+    a_day = a_day.replace(/(\r\n\t|\n|\r\t)/gm,"");
+    a_day = a_day.trim();
+    a_time = time.value;
+    data = {
+        'a_ymd': `${a_year}-${a_month}-${a_day}`,
+        'a_year': a_year,
+        'a_month': a_month,
+        'a_day': a_day,
+        'a_time': a_time,
+    }
+    $.ajax({
+        type: "POST",
+        url: "cancel/",
+        headers:{"X-CSRFToken": $crf_token},
+        data: data,
+        dataType: "json",
+        success: function (response) {
+            if(response.remain == false){
+                alert('이미 예약이 취소 되어있습니다.')
+            }else{
+                $('.remain').html(response.remain);
+            }
+        },
+        error: function (request, status, error) { },
+    });
+});
+
 
 // 초기화 함수 
 const reset = ()=>{
@@ -72,3 +180,8 @@ window.onload=()=>{
     reset();
 }
 
+
+const cod = document.querySelector('.time');
+cod.addEventListener('change', ()=>{
+    console.log('cod.value :>> ', cod.value);
+});
