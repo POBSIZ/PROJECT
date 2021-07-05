@@ -65,11 +65,12 @@ def view(request):
 @login_required(login_url='accountapp:login')
 def resv(request):
     if (request.method == 'POST'):
+        f_ymd_obj = YMD.objects.get(full_date=request.POST['a_ymd'])
         try:
-            Time.objects.filter( Q(f_ymd=request.POST['a_ymd']) and Q(f_person=request.user) )
+            r_time = Time.objects.get( Q(f_ymd=f_ymd_obj) & Q(f_person=request.user) )
+            print(r_time)
             res_remain = False
         except:
-            f_ymd_obj = YMD.objects.get(full_date=request.POST['a_ymd'])
             time_obj = Time()
             time_obj.o_time = request.POST['a_time']
             time_obj.f_ymd = f_ymd_obj
@@ -89,11 +90,12 @@ def resv(request):
 @login_required(login_url='accountapp:login')
 def resvCancel(request):
     if (request.method == 'POST'):
+        f_ymd_obj = YMD.objects.get(full_date=request.POST['a_ymd'])
         try:
-            r_time = Time.objects.filter( Q(f_ymd=request.POST['a_ymd']) and Q(f_person=request.user) )
+            r_time = Time.objects.get( Q(f_ymd=f_ymd_obj) & Q(f_person=request.user) )
             r_time.delete()
+            print(r_time)
 
-            f_ymd_obj = YMD.objects.get(full_date=request.POST['a_ymd'])
 
             r_day = Day.objects.get(f_ymd=f_ymd_obj)
             r_day.remain = r_day.remain + 1
