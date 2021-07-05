@@ -11,7 +11,7 @@ class YMD(models.Model):
 
 class Year(models.Model):
     o_year = IntegerField(blank=True, null=True)
-
+    
 class Month(models.Model):
     o_month = IntegerField(blank=True, null=True)
     f_year = models.ForeignKey(Year, on_delete=models.CASCADE, blank=True, null=True)
