@@ -152,6 +152,12 @@
     text-align: center;
 }
 
+.resv-remain > .remain{
+    font-weight: bold;
+    font-size: 25px;
+    color: var(--light);
+}
+
 .resv_info > h3{
     margin: 2% 0;
     text-align: center;
@@ -218,14 +224,6 @@
 }
 
 @media screen and (max-width: 280px) {
- 
-    .calendar {
-        width: 90%;
-        margin: auto;
-        padding-bottom: 50px;
-    }
-
-    
     .calendar_nav {
         font-size: 20px;
     }
@@ -249,13 +247,6 @@
 }
 
 @media screen and (min-width: 280px) {
- 
-    .calendar {
-        width: 90%;
-        margin: auto;
-        padding-bottom: 50px;
-    }
-
     .calendar_nav {
         font-size: 20px;
     }
@@ -279,13 +270,6 @@
 }
 
 @media screen and (min-width: 600px) {
- 
-    .calendar {
-        width: 70%;
-        margin: auto;
-        padding-bottom: 50px;
-    }
-
     .date_event{
         display: block;
         width: fit-content;
