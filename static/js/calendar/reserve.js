@@ -1,14 +1,14 @@
-var $crf_token = $('[name="csrfmiddlewaretoken"]').attr('value');
+var csrf_token = $('[name="csrfmiddlewaretoken"]').attr('value');
 const getView = (viewData)=>{
     $.ajax({
         type: "POST",
         url: "view/",
-        headers:{"X-CSRFToken": $crf_token},
+        headers:{"X-CSRFToken": csrf_token},
         data: viewData,
         dataType: "json",
         success: function (response) {
-            $('.remain').html(response.remain);
-            // console.log('object :>> ', response.remain);
+            $('.remain').html(response.remain); 
+            console.log('object :>> ', response.time);
         },
         error: function (request, status, error) { },
     });
@@ -54,7 +54,6 @@ const dateFunc = ()=>{
                 'a_year': a_year,
                 'a_month': a_month,
                 'a_day': a_day,
-                // 'a_time': car,
             }
             if(i.classList.contains('other') || i.classList.contains('selected')){
                 dates.forEach((ig)=>{ig.classList.remove('selected');});
@@ -106,12 +105,14 @@ postBtn.addEventListener('click', ()=>{
     $.ajax({
         type: "POST",
         url: "resv/",
-        headers:{"X-CSRFToken": $crf_token},
+        headers:{"X-CSRFToken": csrf_token},
         data: data,
         dataType: "json",
         success: function (response) {
             if(response.remain == false){
                 alert('이미 예약이 되어있습니다.')
+            }else if(response.remain == true){
+                alert('예약이 불가합니다.')
             }else{
                 $('.remain').html(response.remain);
             }
@@ -143,7 +144,7 @@ cancelBtn.addEventListener('click', ()=>{
     $.ajax({
         type: "POST",
         url: "cancel/",
-        headers:{"X-CSRFToken": $crf_token},
+        headers:{"X-CSRFToken": csrf_token},
         data: data,
         dataType: "json",
         success: function (response) {
@@ -179,9 +180,3 @@ window.onload=()=>{
     });
     reset();
 }
-
-
-const cod = document.querySelector('.time');
-cod.addEventListener('change', ()=>{
-    console.log('cod.value :>> ', cod.value);
-});

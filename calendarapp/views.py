@@ -3,16 +3,18 @@ from django.shortcuts import render, redirect
 from django.db.models import Q
 from django.http import HttpResponse
 import json
+from django.http import JsonResponse
+from django.core import serializers
 from .models import YMD, Year, Month, Day, Time
 
 # CALENDAR
 @login_required(login_url='accountapp:login')
-def calendar(request):
+def ShowCalendar(request):
     return render(request, 'calendar/calendar.html')
 
 # VIEW
 @login_required(login_url='accountapp:login')
-def view(request):
+def ReservationView(request):
     if (request.method == 'POST'):
 
         # YMD
@@ -38,12 +40,13 @@ def view(request):
             f_year_obj = Year.objects.get(o_year=request.POST['a_year'])
             month_obj = Month()
             month_obj.o_month = request.POST['a_month']
-            month_obj.f_year = f_year_obj
+            month_obj.f_year = f_year_obj   
             month_obj.save()
 
         # Day
         try:
-            r_day = Day.objects.get(o_day=request.POST['a_day'])
+            f_ymd_obj = YMD.objects.get(full_date=request.POST['a_ymd'])
+            r_day = Day.objects.get( f_ymd=f_ymd_obj )
             res_remain = r_day.remain
         except:
             f_ymd_obj = YMD.objects.get(full_date=request.POST['a_ymd'])
@@ -56,20 +59,37 @@ def view(request):
             day_obj.save()
             res_remain = 4
 
+        # Time
+        try: 
+            f_ymd_obj = YMD.objects.get(full_date=request.POST['a_ymd'])
+            time_obj = Time.objects.filter(f_ymd=f_ymd_obj)
+            time_obj = serializers.serialize("json", time_obj)
+            # print(time_obj)
+        except:
+            time_obj = False
+
+
+    else:
+        return render(request, 'error.html')
     context = {  
         'remain': res_remain,    
+        'time': time_obj,    
     }
     return HttpResponse(json.dumps(context), content_type="application/json")
+    # return HttpResponse(context)
 
 # RESV
 @login_required(login_url='accountapp:login')
-def resv(request):
+def Reserve(request):
     if (request.method == 'POST'):
         f_ymd_obj = YMD.objects.get(full_date=request.POST['a_ymd'])
         try:
-            r_time = Time.objects.get( Q(f_ymd=f_ymd_obj) & Q(f_person=request.user) )
-            print(r_time)
-            res_remain = False
+            r_day = Day.objects.get(f_ymd=f_ymd_obj)
+            if(r_day.remain == 0):
+                res_remain = True
+            else:
+                r_time = Time.objects.get( Q(f_ymd=f_ymd_obj) & Q(f_person=request.user) )
+                res_remain = False
         except:
             time_obj = Time()
             time_obj.o_time = request.POST['a_time']
@@ -78,9 +98,12 @@ def resv(request):
             time_obj.save()
             
             r_day = Day.objects.get(f_ymd=f_ymd_obj)
-            r_day.remain = r_day.remain - 1
-            r_day.save()
-            res_remain = r_day.remain
+            if(r_day.remain == 0):
+                res_remain = True
+            else:
+                r_day.remain = r_day.remain - 1
+                r_day.save()
+                res_remain = r_day.remain
 
     context = {  
         'remain': res_remain,    
@@ -88,14 +111,12 @@ def resv(request):
     return HttpResponse(json.dumps(context), content_type="application/json")
 
 @login_required(login_url='accountapp:login')
-def resvCancel(request):
+def CancelReservation(request):
     if (request.method == 'POST'):
         f_ymd_obj = YMD.objects.get(full_date=request.POST['a_ymd'])
         try:
             r_time = Time.objects.get( Q(f_ymd=f_ymd_obj) & Q(f_person=request.user) )
             r_time.delete()
-            print(r_time)
-
 
             r_day = Day.objects.get(f_ymd=f_ymd_obj)
             r_day.remain = r_day.remain + 1
