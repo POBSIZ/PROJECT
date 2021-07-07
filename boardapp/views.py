@@ -6,6 +6,7 @@ from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView
 from django.views.generic.edit import FormMixin
+from django.db.models import Q
 
 from boardapp.decorators import post_ownership_required
 from boardapp.forms import PostCreationForm
@@ -73,7 +74,29 @@ class PostListView(ListView):
     paginate_by = 5
 
     ordering = ['-pk']
-
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        request = self.request
+        
+        page = request.GET.get('page', '1')  # 페이지
+        kw = request.GET.get('kw', '')  # 검색어
+        
+        post_list = Post.objects.order_by('-pk')
+        if kw:
+            post_list = post_list.filter(
+                Q(title__icontains=kw) |  # 제목검색
+                Q(content__icontains=kw) |  # 내용검색
+                Q(writer__username__icontains=kw) |  # 질문 글쓴이검색
+                Q(comment__writer__username__icontains=kw) |  # 답변 글쓴이검색
+                Q(category__name__icontains=kw)
+            ).distinct()
+        
+        context['post_list'] = post_list
+        context['kw'] = kw
+        context['page'] = page
+        
+        return context
 
 
 

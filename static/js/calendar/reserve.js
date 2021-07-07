@@ -7,7 +7,7 @@ const getView = (viewData)=>{
         data: viewData,
         dataType: "json",
         success: function (response) {
-            $('.remain').html(response.remain);
+            $('.remain').html(response.remain); 
             console.log('object :>> ', response.time);
         },
         error: function (request, status, error) { },
@@ -111,6 +111,8 @@ postBtn.addEventListener('click', ()=>{
         success: function (response) {
             if(response.remain == false){
                 alert('이미 예약이 되어있습니다.')
+            }else if(response.remain == true){
+                alert('예약이 불가합니다.')
             }else{
                 $('.remain').html(response.remain);
             }
@@ -178,9 +180,3 @@ window.onload=()=>{
     });
     reset();
 }
-
-
-const cod = document.querySelector('.time');
-cod.addEventListener('change', ()=>{
-    console.log('cod.value :>> ', cod.value);
-});

@@ -40,7 +40,7 @@ def ReservationView(request):
             f_year_obj = Year.objects.get(o_year=request.POST['a_year'])
             month_obj = Month()
             month_obj.o_month = request.POST['a_month']
-            month_obj.f_year = f_year_obj
+            month_obj.f_year = f_year_obj   
             month_obj.save()
 
         # Day
@@ -63,8 +63,8 @@ def ReservationView(request):
         try: 
             f_ymd_obj = YMD.objects.get(full_date=request.POST['a_ymd'])
             time_obj = Time.objects.filter(f_ymd=f_ymd_obj)
-            # time_json = serializers.serialize("json", time_obj)
-            # print(time_json[0])
+            time_obj = serializers.serialize("json", time_obj)
+            # print(time_obj)
         except:
             time_obj = False
 
@@ -75,8 +75,8 @@ def ReservationView(request):
         'remain': res_remain,    
         'time': time_obj,    
     }
-    # return HttpResponse(json.dumps(context), content_type="application/json")
-    return JsonResponse(context)
+    return HttpResponse(json.dumps(context), content_type="application/json")
+    # return HttpResponse(context)
 
 # RESV
 @login_required(login_url='accountapp:login')
@@ -84,8 +84,12 @@ def Reserve(request):
     if (request.method == 'POST'):
         f_ymd_obj = YMD.objects.get(full_date=request.POST['a_ymd'])
         try:
-            r_time = Time.objects.get( Q(f_ymd=f_ymd_obj) & Q(f_person=request.user) )
-            res_remain = False
+            r_day = Day.objects.get(f_ymd=f_ymd_obj)
+            if(r_day.remain == 0):
+                res_remain = True
+            else:
+                r_time = Time.objects.get( Q(f_ymd=f_ymd_obj) & Q(f_person=request.user) )
+                res_remain = False
         except:
             time_obj = Time()
             time_obj.o_time = request.POST['a_time']
@@ -94,9 +98,12 @@ def Reserve(request):
             time_obj.save()
             
             r_day = Day.objects.get(f_ymd=f_ymd_obj)
-            r_day.remain = r_day.remain - 1
-            r_day.save()
-            res_remain = r_day.remain
+            if(r_day.remain == 0):
+                res_remain = True
+            else:
+                r_day.remain = r_day.remain - 1
+                r_day.save()
+                res_remain = r_day.remain
 
     context = {  
         'remain': res_remain,    
