@@ -1,0 +1,29 @@
+.register-wrapper{
+    margin-bottom: 50px;
+}
+
+div > .title{
+    text-align: center;
+}
+
+#register_form{
+    width: fit-content;
+    margin: auto;
+}
+
+.input_itm{
+    width: 250px;
+    padding: 10px;
+    display: block;
+}
+
+.input_itm > input{
+    display: inline-block;
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+}
+
+.itm-email > input {
+    width: 40%;
+}

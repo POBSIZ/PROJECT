@@ -63,7 +63,8 @@ function UserRegister() {
         return;
     }
     
-    $('#phone').val($('#phone1').val() + "-" + $('#phone2').val() + "-" + $('#phone3').val());
+    // $('#phone').val($('#phone1').val() + "-" + $('#phone2').val() + "-" + $('#phone3').val());
+    $('#phone').val($('#phone-input').val());
     $('#email').val($('#email_id').val() + "@" + $('#email_domain').val());
     
     $('#register_form').submit();
