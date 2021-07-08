@@ -21,6 +21,19 @@
                         value="{{ target_post.title|default_if_none:'' }}"
                         placeholder="TITLE"
                     >
+                    <input type="hidden" name="category" id="category" value="{% if post %}{{ post.category.name}}{% else %}-{% endif %}">
+                    <select id="cateselect" onchange="selectCategory()">
+                        <option selected value="{{ post.category.name|default_if_none:'-' }}">
+                            {% if post %}
+                            {{ post.category.name|default_if_none:'선택' }}
+                            {% else %}
+                            선택
+                            {% endif %}
+                        </option>
+                        {% for cate in category %}
+                            <option value="{{ cate.name }}">{{cate.name}}</option>
+                        {% endfor %}
+                    </select>>
                 </div>
                 
                 {{ form.media }}

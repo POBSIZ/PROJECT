@@ -15,5 +15,4 @@ class PostCreationForm(forms.ModelForm):
         }
         widgets = {
             'content': FroalaEditor(),
-            'image': forms.FileInput(attrs={'class': 'thum',}),
         }

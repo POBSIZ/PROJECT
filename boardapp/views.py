@@ -21,12 +21,16 @@ def Post_create(request):
     """
 
     if request.method == 'POST':
-        form = PostCreationForm(request.POST)
+        form = PostCreationForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
+            if post.image:
+                print("이미지있음")
+            else:
+                print("no image...")
             post.writer = request.user
             post.title = request.POST['title']
-            category = Category(name=request.POST['category']).save()
+            category = Category.objects.get(name=request.POST['category'])
             post.category = category
             post.save()
             return redirect('boardapp:list')
@@ -34,7 +38,7 @@ def Post_create(request):
         form = PostCreationForm()
         categories = Category.objects.all()
 
-    context = {'form': form }
+    context = {'form': form , 'category': categories}
     return render(request, 'boardapp/create.html', context)
 
 
@@ -52,6 +56,13 @@ class PostUpdateView(UpdateView):
     context_object_name = 'target_post'
     form_class = PostCreationForm
     template_name = 'boardapp/update.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        categories = Category.objects.all()
+        context['category'] = categories
+
+        return context
 
     def get_success_url(self):
         return reverse('boardapp:detail', kwargs={'pk': self.object.pk})

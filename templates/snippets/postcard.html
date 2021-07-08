@@ -1,0 +1,9 @@
+{% if post.image %}
+<div>
+    <img src="{{ post.image.url }}">
+</div>
+{% else %}
+<div>
+    {{ post.title }}
+</div>
+{% endif %}
