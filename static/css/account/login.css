@@ -1,63 +1,52 @@
-.login-wrapper{}
-
-.login_form{
-    width: 70%;
+#login_form{
+    width: fit-content;
     margin: auto;
 }
 
-.login_form > div > input{
-    width: 100%;
-    margin: 10px auto;
-    padding: 2%;
-    text-align: center;
-    font-size: 16px;
-    border-bottom: 1px solid var(--BG);
+#id_username{
+    font-size: 15px;
+    width: 250px;
+    height: 45px;
+    padding: 10px;
+    display: block;
+    margin-bottom: 20px;
 }
 
-.login_user{
-    width: 45%;
-    margin: auto;
-}
-.login_pass{
-    width: 45%;
-    margin: auto;
+#id_password{
+    font-size: 15px;
+    width: 250px;
+    height: 45px;
+    padding: 10px;
+    display: block;
+    margin-bottom: 20px;
 }
 
-.login_btn{
-    width: 100%;
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    flex-flow: column;
-}
-.login_btn > input{
-    width: 45% !important;
+.form_submit{
     cursor: pointer;
-    font-weight: bold;
-    margin: 10px auto;
-    border: none !important;
-    transition: all .3s;
+    width: 250px;
+    height: 45px;
+    font-size: 20px;
+    transition: all .2s;
 }
-.login_btn > input:hover{
+
+.form_submit:hover{
     background-color: var(--BG);
     color: #fff;
 }
 
-.login-wrapper > div > h4{
+.form_info{
+    width: 250px;
+    /* padding: 10px; */
     text-align: center;
+    margin: auto;
 }
 
-@media screen and (max-width: 500px) {
- 
-    .login_user{
-        width: 80%;
-    }
-    .login_pass{
-        width: 80%;
-    }
-
-    .login_btn > input{
-        width: 80% !important;
-    }
-
+.form-create{
+    display: block;
+    width: 250px;
+    height: 45px;
+    font-size: 20px;
+    line-height: 50px;
+    background-color: var(--BG);
+    color: #fff;
 }

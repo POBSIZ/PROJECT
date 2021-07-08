@@ -16,12 +16,12 @@
         <form id="login_form" action="." method="POST">
             {% csrf_token %}
             {{ form }}
-            <input type="submit" class=" ">
+            <input class="form_submit" type="submit" value="로그인">
         </form>
     </div>
-    <div>
+    <div class="form_info">
         <h4>아이디가 없으신가요? 회원가입을 해 주시기 바랍니다.</h4>
-        <a href="{% url 'accountapp:create' %}">가입</a>
+        <a class="form-create" href="{% url 'accountapp:create' %}">회원가입</a>
     </div>
 
 </div>
