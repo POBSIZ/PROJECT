@@ -1,11 +1,11 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.db.models import Q
-from django.http import HttpResponse
+from django.http import HttpResponse, response
 import json
 from django.http import JsonResponse
 from django.core import serializers
-from .models import YMD, Year, Month, Day, Time
+from .models import YMD, Year, Month, Day, Time, Event
 
 # CALENDAR
 @login_required(login_url='accountapp:login')
@@ -47,36 +47,44 @@ def ReservationView(request):
         try:
             f_ymd_obj = YMD.objects.get(full_date=request.POST['a_ymd'])
             r_day = Day.objects.get( f_ymd=f_ymd_obj )
-            res_remain = r_day.remain
         except:
             f_ymd_obj = YMD.objects.get(full_date=request.POST['a_ymd'])
             f_month_obj = Month.objects.get(o_month=request.POST['a_month'])
             day_obj = Day()
             day_obj.o_day = request.POST['a_day']
-            day_obj.remain = 4
             day_obj.f_month = f_month_obj
             day_obj.f_ymd = f_ymd_obj
             day_obj.save()
-            res_remain = 4
+
+        # EVENT
+        try:
+            f_ymd_obj = YMD.objects.get(full_date=request.POST['a_ymd'])
+            event_obj = Event.objects.filter(f_ymd=f_ymd_obj)
+            event_obj = serializers.serialize("json", event_obj)
+        except:
+            event_obj =False
 
         # Time
         try: 
             f_ymd_obj = YMD.objects.get(full_date=request.POST['a_ymd'])
             time_obj = Time.objects.filter(f_ymd=f_ymd_obj)
             time_obj = serializers.serialize("json", time_obj)
-            # print(time_obj)
         except:
             time_obj = False
-
-
     else:
         return render(request, 'error.html')
+
+    res_remain = 4
     context = {  
         'remain': res_remain,    
-        'time': time_obj,    
+        'event': event_obj,       
+        'time': time_obj,       
     }
-    return HttpResponse(json.dumps(context), content_type="application/json")
-    # return HttpResponse(context)
+
+    jsonVal = json.dumps(context)
+
+    # return HttpResponse(json.dumps(context), content_type="application/json")
+    return JsonResponse(jsonVal, safe=False)
 
 # RESV
 @login_required(login_url='accountapp:login')

@@ -35,29 +35,24 @@
                     <span class="resv-month">05</span>월
                     <span class="resv-day">11</span>일
                 </div>
-                <div class="resv-remain">
-                    <span class="resv-remain remain"></span>자리 남음
-                </div>
-                <h3>
-                    예약자 목록
-                </h3>
-                <div class="resv-list">  
-                    <p>Heo Sang <span>12:30</span></p>
-                    <p>Sang Won <span>12:30</span></p>
-                    <p>Heo Won <span>12:30</span></p>
-                </div>
-                <h3>
-                    프로그램 목록
-                </h3>
+
+                <h3>프로그램 목록</h3>
                 <div class="resv-event">
-                    <p>EVNET 1 <span>12:30</span></p>
-                    <p>EVNET 2 <span>14:30</span></p>
-                    <p>EVNET 3 <span>17:30</span></p>
+                    <p class="event-itm"><span class="itm-title">EVNET 1</span> <span class="itm-time">12:30</span></p>
+                    <p class="event-itm"><span class="itm-title">EVNET 2</span> <span class="itm-time">12:30</span></p>
+                    <p class="event-itm"><span class="itm-title">TEST</span> <span class="itm-time">12:30</span></p>
                 </div>
+
+                <div class="resv-detail">
+                    <h3>예약자 목록</h3>
+                    <div class="resv-remain"><span class="resv-remain remain"></span>자리 남음</div>
+                    <div class="resv-list"></div>
+                </div>
+
             </div>
             <div class="resv_set">
                 {% csrf_token %}
-                <input class="resv_set time" type="time" name="" id="">
+                <!-- <input class="resv_set time" type="time" name="" id=""> -->
                 <button class="resv_btn purchase">예약</button>
                 <button class="resv_btn cancel">예약취소</button>
             </div>
