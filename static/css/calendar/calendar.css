@@ -126,13 +126,15 @@
 
 .resv-bg{
     width: 90%;
+    height: fit-content;
+    max-height: 600px;
+    overflow-y: auto;
     position: relative;
     padding: 3%;
     background-color: #ffffff;
-    height: fit-content;
     top: 50%;
     transform: translateY(-50%);
-    border-radius: 20px;
+    border-radius: 10px;
     font-size: 20px;
 }
 
@@ -164,7 +166,7 @@
 }
 
 
-/* 예약인 리스트 */
+/* reserve tab 예약인 리스트 */
 .resv-list{
     display: flex;
     justify-content: center;
@@ -190,11 +192,18 @@
     font-size: 15px;
 }
 
-.resv-event > p{
+.resv-event > .event-itm{
+    cursor: pointer;
     display: inline-block;
     padding: 5px;
     margin: 5px;
     border: 2px solid var(--BG);
+    font-size: 15px;
+    transition: all .2s;
+}
+.event-itm.selItm{
+    background-color: var(--BG);
+    color: #ffffff;
 }
 
 .resv_set{
@@ -222,6 +231,18 @@
     margin-top: 20px;
     padding: 5px 0px;
 }
+
+/* resv detail */
+.resv-detail{
+    display: none;
+    text-align: center;
+}
+
+.resv-detail.detOn{
+    display: block;
+}
+
+
 
 @media screen and (max-width: 280px) {
     .calendar_nav {

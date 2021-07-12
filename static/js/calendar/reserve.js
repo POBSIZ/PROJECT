@@ -1,3 +1,5 @@
+var eventList = '';
+var timeList = '';
 var csrf_token = $('[name="csrfmiddlewaretoken"]').attr('value');
 const getView = (viewData)=>{
     $.ajax({
@@ -20,7 +22,6 @@ const getView = (viewData)=>{
             // $('#test').html(temp1);
             console.log('object :>> ', response);
         },
-        error: function (request, status, error) { },
     });
 }
 
@@ -32,6 +33,40 @@ exitBtn.addEventListener('click', ()=>{
     resvTab.classList.remove('open');
     nav.setAttribute('style', 'z-index: 10;');
 });
+
+
+
+// 이벤트 선택용 함수
+const eventActive = ()=>{
+    eventItem = document.querySelectorAll('.event-itm');
+    resvDetail = document.querySelector('.resv-detail');
+    eventItem.forEach(item=>{
+        item.addEventListener('click', ()=>{
+            selItem = document.querySelectorAll('.selItm');
+            if(selItem.length > 0){
+                eventItem.forEach(iitm=>{iitm.classList.remove('selItm')});
+                $('.resv-list').html('');
+            }
+            item.classList.toggle('selItm');
+            eventTitle = item.children[0].innerHTML;
+            
+            for(var el in eventList){
+                if(eventList[el]['fields']['o_event_title'] == eventTitle){
+                    $('.resv-remain.remain').html(eventList[el]['fields']['remain'])
+                    resvListItm = `<p>${timeList[el]['fields']['f_person']}</p>` 
+                    $('.resv-list').append(resvListItm);
+                }
+            }       
+
+            resvDetail.classList.add('detOn');
+                 
+            // console.log('eventTitle :>> ', eventTitle);
+            // console.log('eventList :>> ', eventList);
+        });
+    });
+}
+
+
 
 // CHANGE YMD
 const o_year = document.querySelector('.year');
@@ -77,6 +112,7 @@ const dateFunc = ()=>{
                 resvTab.classList.add('open');
                 changeYMD(i.children[0]);
                 getView(data);
+                eventActive();
                 nav.setAttribute('style', 'z-index: 0;');
             }else{
                 i.classList.add('selected');
@@ -84,11 +120,13 @@ const dateFunc = ()=>{
                 resvTab.classList.add('open');
                 changeYMD(i.children[0]);
                 getView(data);
+                eventActive();
                 nav.setAttribute('style', 'z-index: 0;');
             }
         });
     });
 };
+
 
 
 // RESV POST
