@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'noticeapp',
     'calendarapp',
     'froala_editor',
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

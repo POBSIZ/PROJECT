@@ -5,10 +5,20 @@ const getView = (viewData)=>{
         url: "view/",
         headers:{"X-CSRFToken": csrf_token},
         data: viewData,
-        dataType: "json",
+        dataType: 'json',
         success: function (response) {
-            $('.remain').html(response.remain); 
-            console.log('object :>> ', response.time);
+            var apiTest = "";
+            // var temp1 = JSON.parse(response.time)
+            console.log(response.time[0])
+            for (var i = 0; i < response.time.length; i++) {
+                apiTest += "<p> 이벤트 시간 : " + response.time[i].o_time + "<br>"
+                apiTest += "예약자 : " + response.time[i].username + "<br>"
+                apiTest += "만든 날짜 : " + response.time[i].create_time + "</p>"
+            }
+            $('#test').html(apiTest);
+            $('.remain').html(response.remain);
+            // $('#test').html(temp1);
+            console.log('object :>> ', response);
         },
         error: function (request, status, error) { },
     });

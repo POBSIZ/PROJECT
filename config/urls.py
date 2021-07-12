@@ -33,6 +33,6 @@ urlpatterns = [
     path('calendar/', include('calendarapp.urls')),
 
     path('froala_editor/', include('froala_editor.urls')),
-
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
