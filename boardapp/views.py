@@ -1,5 +1,8 @@
+from datetime import datetime, timedelta
+
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
 from django.urls import reverse, reverse_lazy
@@ -8,25 +11,21 @@ from django.views.generic import CreateView, DetailView, UpdateView, DeleteView,
 from django.views.generic.edit import FormMixin
 from django.db.models import Q
 
-from boardapp.decorators import post_ownership_required
-from boardapp.forms import PostCreationForm
+from boardapp.decorators import post_ownership_required, admin_ownership_required
+from boardapp.forms import PostCreationForm, CategoryCreateForm
 from boardapp.models import Post, Category
 from commentapp.forms import CommentCreationForm
 
 
 @login_required(login_url='accountapp:login')
 def Post_create(request):
-    """
-    글 등록
-    """
-
     if request.method == 'POST':
-        form = PostCreationForm(request.POST)
+        form = PostCreationForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
             post.writer = request.user
             post.title = request.POST['title']
-            category = Category(name=request.POST['category']).save()
+            category = get_object_or_404(Category, name=request.POST['category'])
             post.category = category
             post.save()
             return redirect('boardapp:list')
@@ -34,15 +33,50 @@ def Post_create(request):
         form = PostCreationForm()
         categories = Category.objects.all()
 
-    context = {'form': form }
+    context = {'form': form, 'category': categories}
     return render(request, 'boardapp/create.html', context)
 
 
-class PostDetailView(DetailView, FormMixin):
-    model = Post
-    form_class = CommentCreationForm
-    context_object_name = 'target_post'
-    template_name = 'boardapp/detail.html'
+def Post_detail(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    form = CommentCreationForm()
+    context = {'target_post': post, 'form': form}
+
+    response = render(request, 'boardapp/detail.html', context)
+
+    expire_time = 600
+    cookie_value = request.COOKIES.get('hitboard', '_')
+
+    if f'_{pk}_' not in cookie_value:
+        cookie_value += f'{pk}_'
+        response.set_cookie('hitboard', value=cookie_value, max_age=expire_time, httponly=True)
+
+        post.watches += 1
+        post.save()
+
+    return response
+
+#
+# class PostDetailView(HitCountDetailView, FormMixin, ):
+#     model = Post
+#     form_class = CommentCreationForm
+#     count_hit = True
+#     context_object_name = 'target_post'
+#     template_name = 'boardapp/detail.html'
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         request = self.request
+#
+#         # 쿠키 만료 시간 10분
+#         expire_time = 600
+#         cookie_value = request.COOKIES.get('hitboard', '_')
+#
+#         if f'_{self.object.pk}_' not in cookie_value:
+#             cookie_value += f'{self.object.pk}_'
+#             response.
+#
+#         return context
 
 
 @method_decorator(post_ownership_required, 'get')
@@ -52,6 +86,13 @@ class PostUpdateView(UpdateView):
     context_object_name = 'target_post'
     form_class = PostCreationForm
     template_name = 'boardapp/update.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        categories = Category.objects.all()
+        context['category'] = categories
+
+        return context
 
     def get_success_url(self):
         return reverse('boardapp:detail', kwargs={'pk': self.object.pk})
@@ -99,4 +140,25 @@ class PostListView(ListView):
         return context
 
 
+# @method_decorator(admin_ownership_required, 'get')
+# @method_decorator(admin_ownership_required, 'post')
+# class CategoryCreateView(CreateView):
+#     model = Category
+#     form_class = CategoryCreateForm
+#     template_name = 'boardapp/catecreate.html'
+#
+#     def get_success_url(self):
+#         return reverse('accountapp:detail', kwargs={'pk': self.user.pk})
 
+def Category_Create(request):
+    if request.method == 'POST':
+        form = CategoryCreateForm(request.POST)
+        if form.is_valid():
+            category = form.save(commit=False)
+            category.save()
+            return redirect('accountapp:detail', pk=request.user.pk)
+    else:
+        form = CategoryCreateForm()
+
+    context = {'form': form}
+    return render(request, 'boardapp/catecreate.html', context)

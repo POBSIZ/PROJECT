@@ -7,18 +7,20 @@ const getView = (viewData)=>{
         url: "view/",
         headers:{"X-CSRFToken": csrf_token},
         data: viewData,
-        dataType: "json",
+        dataType: 'json',
         success: function (response) {
-            jsonVal = JSON.parse(response);
-            timeList = JSON.parse(jsonVal.time);
-            eventList = JSON.parse(jsonVal.event);
-
-            $('.remain').html(jsonVal.remain); 
-            console.log('time :>> ', timeList);
-            console.log('event :>> ', eventList);
-        },
-        error: function (request, status, error) {
-            console.log(request, status, error);
+            var apiTest = "";
+            // var temp1 = JSON.parse(response.time)
+            console.log(response.time[0])
+            for (var i = 0; i < response.time.length; i++) {
+                apiTest += "<p> 이벤트 시간 : " + response.time[i].o_time + "<br>"
+                apiTest += "예약자 : " + response.time[i].username + "<br>"
+                apiTest += "만든 날짜 : " + response.time[i].create_time + "</p>"
+            }
+            $('#test').html(apiTest);
+            $('.remain').html(response.remain);
+            // $('#test').html(temp1);
+            console.log('object :>> ', response);
         },
     });
 }

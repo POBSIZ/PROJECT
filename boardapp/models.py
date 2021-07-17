@@ -2,6 +2,7 @@ from django.db import models
 
 from froala_editor.fields import FroalaField
 from django.conf import settings
+
 User = settings.AUTH_USER_MODEL
 from django.contrib.auth import get_user_model
 
@@ -24,6 +25,8 @@ class Post(models.Model):
     content = FroalaField(plugins=('font_size', 'font_family'), null=True, blank=True, options={
         'toolbarInline': True,
     })
+    
+    watches = models.PositiveIntegerField(default=0, verbose_name="조회수")
 
     created_at = models.DateField(auto_now_add=True, null=True)
     modify_date = models.DateTimeField(null=True, blank=True)

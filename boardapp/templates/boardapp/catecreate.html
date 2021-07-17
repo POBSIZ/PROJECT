@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div style="text-align: center;">
+    <h4>Category Create</h4>
+    <form action="{% url 'boardapp:catecreate' %}" method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" class="">
+    </form>
+</div>
+
+{% endblock content %}

@@ -1,9 +1,11 @@
+from calendarapp.serializers import TimeSerializer
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.db.models import Q
 from django.http import HttpResponse, response
 import json
 from django.http import JsonResponse
+from rest_framework.renderers import JSONRenderer
 from django.core import serializers
 from .models import YMD, Year, Month, Day, Time, Event
 
@@ -68,23 +70,27 @@ def ReservationView(request):
         try: 
             f_ymd_obj = YMD.objects.get(full_date=request.POST['a_ymd'])
             time_obj = Time.objects.filter(f_ymd=f_ymd_obj)
-            time_obj = serializers.serialize("json", time_obj)
+            
+                
+            # time_obj = serializers.serialize("json", time_obj)
+            time_obj = TimeSerializer(time_obj, many=True)
+            # time_obj = JSONRenderer().render(time_obj.data)
+            # print(time_obj.data)
+            
         except:
             time_obj = False
     else:
         return render(request, 'error.html')
-
-    res_remain = 4
+    
     context = {  
-        'remain': res_remain,    
-        'event': event_obj,       
-        'time': time_obj,       
+        'remain': res_remain,
+        'time': time_obj.data
     }
-
-    jsonVal = json.dumps(context)
-
-    # return HttpResponse(json.dumps(context), content_type="application/json")
-    return JsonResponse(jsonVal, safe=False)
+    print(json.dumps(context))
+    # return render(request, "calendar/calendar.html", context)
+    # return HttpResponse(json.dumps(context), content_type="text/json-comment-filtered")
+    return JsonResponse(context, safe=False)
+    # return HttpResponse(context)
 
 # RESV
 @login_required(login_url='accountapp:login')

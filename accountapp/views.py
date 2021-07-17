@@ -111,6 +111,7 @@ from .forms import CheckPasswordForm
 
 @login_required(login_url='accounts:login')
 def profile_delete_view(request):
+
     if request.method == 'POST':
         password_form = CheckPasswordForm(request.user, request.POST)
 

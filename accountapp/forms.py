@@ -14,7 +14,6 @@ class AccountUpdateForm(UserCreationForm):
         self.fields['username'].disabled = True
 
 
-
 class CheckPasswordForm(forms.Form):
     password = forms.CharField(label='비밀번호', widget=forms.PasswordInput(
         attrs={'class': 'form-control', }),

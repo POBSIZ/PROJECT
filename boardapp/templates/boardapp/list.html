@@ -18,21 +18,24 @@
         <div class="boardList__wrapper">
             <ul class="boardList">
                 {% if post_list %}
-                    <li class="boardList__itm">
+                   <li class="boardList__itm">
                         <div class="boardList__itm category">카테고리</div>
                         <div class="boardList__itm userInfo">
-                            <div class="boardList__itm userInfo--name">작성자</div>
-                            <div class="boardList__itm userInfo--time"> | 작성일</div>
+                            <div class="boardList__itm userInfo&#45;&#45;name">작성자</div>
+                            <div class="boardList__itm userInfo&#45;&#45;time"> | 작성일</div>
                         </div>
                         <div class="boardList__itm textInfo">
-                            <div class="boardList__itm textInfo--title">제목</div>
+                            <div class="boardList__itm textInfo&#45;&#45;title">제목</div>
                         </div>
-                    </li>
+                    </li> 
+                <!-- <div class="container"> -->
                     {% for post in post_list %}
                     <a class="boardList--link" href="{% url 'boardapp:detail' post.pk %}">
                         {% include 'snippets/posting.html' with post=post %}
                     </a>
-                {% endfor %}
+                    {% endfor %}
+                    <!-- <script src="{% static 'js/magicgrid.js' %}"></script> -->
+                <!-- </div> -->
             </ul>
         </div>
         {% else %}

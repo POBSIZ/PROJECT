@@ -38,6 +38,11 @@
                 cancel
             </p>
         </a>
+            {% if target_user.is_superuser == 1 %}
+            <a href="{% url 'boardapp:catecreate' %}">
+                <p>category create</p>
+            </a>
+            {% endif %}
         {% endif %}
     </div>
     <div>
