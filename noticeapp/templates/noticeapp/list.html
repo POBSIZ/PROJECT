@@ -3,6 +3,26 @@
 {% block content %}
 <link rel="stylesheet" href="{% static '/css/board/list.css' %}">
 
+<style>
+    .magicgrid{
+        padding: 0;
+        margin: 0, auto;
+    }
+    .magicgrid a{
+        width: 40%;
+        max-width: 250px;
+    }
+    .magicgrid div {
+      border-radius: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .magicgrid img{
+        width: 100%;
+        border-radius: 1rem;
+    }
+    </style>
 
 <div class="container__board">
     <h1 class="TITLE">
@@ -19,20 +39,24 @@
         <div class="boardList__wrapper">
             <ul class="boardList">
                 {% if notice_list %}
-                    <li class="boardList__itm">
-                        <div class="boardList__itm userInfo">
-                            <div class="boardList__itm userInfo--name">작성자</div>
-                            <div class="boardList__itm userInfo--time"> | 작성일</div>
-                        </div>
-                        <div class="boardList__itm textInfo">
-                            <div class="boardList__itm textInfo--title">제목</div>
-                        </div>
-                    </li>
-                    {% for notice in notice_list %}
-                    <a class="boardList--link" href="{% url 'noticeapp:detail' notice.pk %}">
-                        {% include 'snippets/notices.html' with notice=notice %}
-                    </a>
-                    {% endfor %}
+<!--                    <li class="boardList__itm">-->
+<!--                        <div class="boardList__itm userInfo">-->
+<!--                            <div class="boardList__itm userInfo&#45;&#45;name">작성자</div>-->
+<!--                            <div class="boardList__itm userInfo&#45;&#45;time"> | 작성일</div>-->
+<!--                        </div>-->
+<!--                        <div class="boardList__itm textInfo">-->
+<!--                            <div class="boardList__itm textInfo&#45;&#45;title">제목</div>-->
+<!--                        </div>-->
+<!--                    </li>-->
+                    <div class="magicgrid">
+                        {% for notice in notice_list %}
+                        <a class="boardList--link" href="{% url 'noticeapp:detail' notice.pk %}">
+                            {% include 'snippets/notices.html' with notice=notice %}
+                        </a>
+                        {% endfor %}
+                        <script src="{% static 'js/magicgrid.js' %}"></script>
+                    </div>
+
             </ul>
         </div>
         {% else %}

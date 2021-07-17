@@ -9,7 +9,7 @@ class Notice(models.Model):
     writer = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='notice')
 
     title = models.CharField(max_length=200)
-    image = models.ImageField(upload_to='notice_thumbnail/', null=True, blank=True)
+    image = models.ImageField(upload_to='notice_thumbnail/', null=True)
 
     content = FroalaField(plugins=('font_size', 'font_family'), null=True, blank=True, options={
         'toolbarInline': True,

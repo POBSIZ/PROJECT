@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 
 from django.urls import reverse, reverse_lazy
@@ -18,7 +19,7 @@ def Notice_create(request):
         return render(request, 'error.html')
 
     if request.method == 'POST':
-        form = NoticeCreationForm(request.POST)
+        form = NoticeCreationForm(request.POST, request.FILES)
         if form.is_valid():
             notice = form.save(commit=False)
             notice.writer = request.user
@@ -86,3 +87,23 @@ class NoticeListView(ListView):
 
     ordering = ['-pk']
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        request = self.request
+
+        page = request.GET.get('page', '1')  # 페이지
+        kw = request.GET.get('kw', '')  # 검색어
+
+        notice_list = Notice.objects.order_by('-pk')
+        if kw:
+            notice_list = notice_list.filter(
+                Q(title__icontains=kw) |  # 제목검색
+                Q(content__icontains=kw) |  # 내용검색
+                Q(writer__username__icontains=kw) # 질문 글쓴이검색
+            ).distinct()
+
+        context['notice_list'] = notice_list
+        context['kw'] = kw
+        context['page'] = page
+
+        return context

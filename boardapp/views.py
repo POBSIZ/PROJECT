@@ -10,7 +10,6 @@ from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView
 from django.views.generic.edit import FormMixin
 from django.db.models import Q
-from hitcount.views import HitCountDetailView
 
 from boardapp.decorators import post_ownership_required, admin_ownership_required
 from boardapp.forms import PostCreationForm, CategoryCreateForm
