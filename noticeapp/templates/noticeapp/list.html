@@ -48,15 +48,14 @@
 <!--                            <div class="boardList__itm textInfo&#45;&#45;title">제목</div>-->
 <!--                        </div>-->
 <!--                    </li>-->
-                    <div class="magicgrid">
+                    <div class="magicgrid" >
                         {% for notice in notice_list %}
-                        <a class="boardList--link" href="{% url 'noticeapp:detail' notice.pk %}">
+                        <a class="boardList--link" style="border: solid; border-color: #333333" href="{% url 'noticeapp:detail' notice.pk %}">
                             {% include 'snippets/notices.html' with notice=notice %}
                         </a>
                         {% endfor %}
                         <script src="{% static 'js/magicgrid.js' %}"></script>
                     </div>
-
             </ul>
         </div>
         {% else %}
@@ -65,7 +64,7 @@
         </div>
         {% endif %}
 
-        {% include 'snippets/pagination.html' with page_obj=page_obj %}
+        {% include 'snippets/pagination.html' with page_obj=notice_list %}
 
         <div class="btn__wrapper">
             {% if user.is_superuser == 1 %}

@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 
@@ -83,8 +84,6 @@ class NoticeListView(ListView):
     context_object_name = 'notice_list'
     template_name = 'noticeapp/list.html'
 
-    paginate_by = 5
-
     ordering = ['-pk']
 
     def get_context_data(self, **kwargs):
@@ -102,7 +101,10 @@ class NoticeListView(ListView):
                 Q(writer__username__icontains=kw) # 질문 글쓴이검색
             ).distinct()
 
-        context['notice_list'] = notice_list
+        paginator = Paginator(notice_list, 8)
+        page_obj = paginator.get_page(page)
+
+        context['notice_list'] = page_obj
         context['kw'] = kw
         context['page'] = page
 
