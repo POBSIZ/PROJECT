@@ -35,6 +35,7 @@ body, tbody{
 }
 
 button, input[type=submit], input[type=button]{
+    cursor: pointer;
     border: none;
 }
 

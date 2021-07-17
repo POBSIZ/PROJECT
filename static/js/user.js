@@ -50,11 +50,13 @@ function UserRegister() {
         alert("이름을 입력해 주시기 바랍니다.");
         return;
     }
-    if(!$('#phone1').val() || !$('#phone2').val() || !$('#phone3').val()){
+    // if(!$('#phone1').val() || !$('#phone2').val() || !$('#phone3').val()){
+    if(!$('#phone-input').val()){
         alert("전화번호를 올바르게 입력해 주시기 바랍니다.");
         return;
     }
-    if(!$('#email_id').val() || !$('#email_domain').val()){
+    // if(!$('#email_id').val() || !$('#email_domain').val()){
+    if(!$('#email_id').val()){
         alert("이메일을 올바르게 입력해주시기 바랍니다.");
         return;
     }
@@ -65,7 +67,9 @@ function UserRegister() {
     
     // $('#phone').val($('#phone1').val() + "-" + $('#phone2').val() + "-" + $('#phone3').val());
     $('#phone').val($('#phone-input').val());
-    $('#email').val($('#email_id').val() + "@" + $('#email_domain').val());
+
+    // $('#email').val($('#email_id').val() + "@" + $('#email_domain').val());
+    $('#email').val($('#email_id').val());
     
     $('#register_form').submit();
 }

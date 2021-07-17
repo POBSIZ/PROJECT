@@ -47,14 +47,14 @@
 
         <div class="input_itm itm-email">
             <div class="itm-title">이메일:</div>
-            <input type="text" name="email_id" id="email_id" placeholder="EMAIL" value="">
-            @<input type="text" name="email_domain" id="email_domain" placeholder="@EMAIL.COM" value="">
-            <select id="email_selection" onchange="changeEmailDomain()">
+            <input type="text" name="email_id" id="email_id" placeholder="email@project.com" value="">
+            {% comment %} @<input type="text" name="email_domain" id="email_domain" placeholder="@EMAIL.COM" value=""> {% endcomment %}
+            {% comment %} <select id="email_selection" onchange="changeEmailDomain()">
                 <option value="" selected="selected">--선택하세요--</option>
                 <option value="naver.com">naver.com</option>
                 <option value="gmail.com">gmail.com</option>
                 <option value="daum.net">daum.net</option>
-            </select>
+            </select> {% endcomment %}
         </div>
 
         <div class="input_itm itm-phone">
