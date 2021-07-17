@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
@@ -32,10 +32,28 @@ def Notice_create(request):
     return render(request, 'noticeapp/create.html', context)
 
 
-class NoticeDetailView(DetailView):
-    model = Notice
-    context_object_name = 'target_notice'
-    template_name = 'noticeapp/detail.html'
+def Notice_detail(request, pk):
+    notice = get_object_or_404(Notice, pk=pk)
+    context = {'target_notice': notice}
+
+    response = render(request, 'noticeapp/detail.html', context)
+
+    expire_time = 600
+    cookie_value = request.COOKIES.get('hitboard', '_')
+
+    if f'_{pk}_' not in cookie_value:
+        cookie_value += f'{pk}_'
+        response.set_cookie('hitboard', value=cookie_value, max_age=expire_time, httponly=True)
+
+        notice.watches += 1
+        notice.save()
+
+    return response
+
+# class NoticeDetailView(DetailView):
+#     model = Notice
+#     context_object_name = 'target_notice'
+#     template_name = 'noticeapp/detail.html'
 
 
 @method_decorator(notice_ownership_required, 'get')

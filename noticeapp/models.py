@@ -15,6 +15,8 @@ class Notice(models.Model):
         'toolbarInline': True,
     })
 
+    watches = models.PositiveIntegerField(default=0, verbose_name="조회수")
+
     created_at = models.DateField(auto_now_add=True, null=True)
     modify_date = models.DateTimeField(null=True, blank=True)
 
