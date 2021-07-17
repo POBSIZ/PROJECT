@@ -2,6 +2,8 @@ from django.db import models
 
 from froala_editor.fields import FroalaField
 from django.conf import settings
+from hitcount.models import HitCountMixin
+
 User = settings.AUTH_USER_MODEL
 from django.contrib.auth import get_user_model
 
@@ -13,7 +15,7 @@ class Category(models.Model):
         return self.name
 
 
-class Post(models.Model):
+class Post(models.Model, HitCountMixin):
 
     writer = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='post')
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, blank=True, null=True, related_name='post')

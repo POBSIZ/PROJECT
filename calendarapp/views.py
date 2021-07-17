@@ -75,7 +75,7 @@ def ReservationView(request):
             # time_obj = serializers.serialize("json", time_obj)
             time_obj = TimeSerializer(time_obj, many=True)
             # time_obj = JSONRenderer().render(time_obj.data)
-            print(time_obj.data)
+            # print(time_obj.data)
             
         except:
             time_obj = False

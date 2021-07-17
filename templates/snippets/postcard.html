@@ -1,6 +1,6 @@
 {% if post.image %}
 <div>
-    <img src="{{ post.image.url }}">
+    <img src="{{ post.image.url|default_if_none:'' }}">
 </div>
 {% else %}
 <div>
