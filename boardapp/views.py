@@ -24,10 +24,6 @@ def Post_create(request):
         form = PostCreationForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
-            if post.image:
-                print("이미지있음")
-            else:
-                print("no image...")
             post.writer = request.user
             post.title = request.POST['title']
             category = Category.objects.get(name=request.POST['category'])
