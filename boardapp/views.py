@@ -43,6 +43,13 @@ class PostDetailView(DetailView, FormMixin):
     form_class = CommentCreationForm
     context_object_name = 'target_post'
     template_name = 'boardapp/detail.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        request = self.request
+        login_session = request.session.get('login_session', '')
+
+
 
 
 @method_decorator(post_ownership_required, 'get')
